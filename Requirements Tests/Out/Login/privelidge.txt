@@ -1,0 +1,3 @@
+No type defined
+Undefined Type
+EOS
