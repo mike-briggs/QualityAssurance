@@ -1,5 +1,7 @@
-login
 login machine
 login agent
-login john
+
+login agent
+logout
+login agent
 logout
