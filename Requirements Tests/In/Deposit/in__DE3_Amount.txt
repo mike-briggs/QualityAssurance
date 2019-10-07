@@ -1,0 +1,15 @@
+login agent
+createacct 1234567 NAME
+logout
+
+login machine
+deposit 1234567 100
+deposit 1234567 2001
+deposit 1234567 100a
+logout
+
+login agent
+deposit 1234567 100
+deposit 1234567 1000000
+deleteacct 1234567 NAME
+logout
