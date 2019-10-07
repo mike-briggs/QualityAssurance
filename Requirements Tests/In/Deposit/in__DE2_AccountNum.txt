@@ -1,0 +1,11 @@
+login agent
+createacct 1234567 NAME
+logout
+
+login machine
+deposit 1234567 100
+deposit 12345678 100
+deposit 123456 100
+deposit 0123456 100
+deposit 7654321 100
+logout 

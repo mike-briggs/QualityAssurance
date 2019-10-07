@@ -1,0 +1,9 @@
+NEW 1234567 0000 0000000 NAME
+EOS 0000000 0000 0000000 0000
+
+DEP 1234567 100 0000000 NAME
+ERROR Deposit account number invalid
+ERROR Deposit account number invalid
+ERROR Deposit account number invalid
+ERROR Deposit account number does not exist
+EOS 0000000 0000 0000000 0000
