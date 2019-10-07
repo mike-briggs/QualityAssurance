@@ -1,7 +1,7 @@
 login agent
 createacct 1234567 NAME
-createacct 7654321 
-createacct other_name
+createacct 7654321
+createacct othername
 createacct
 logout
 
