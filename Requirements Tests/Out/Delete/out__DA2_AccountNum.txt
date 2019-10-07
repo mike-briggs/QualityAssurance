@@ -1,10 +1,11 @@
 NEW 1234567 000 0000000 accountname
 EOS 0000000 000 ***
 
-Invalid account number
-Invalid account number
-Invalid account number
-Invalid account number
-Account number does not exist
+ERROR Invalid account number
+ERROR Invalid account number
+ERROR Invalid account number
+ERROR Invalid account number
+ERROR Account number does not exist
 DEL 1234567 000 0000000 accountname
-Account number does not exist
+ERROR Account number does not exist
+EOS 0000000 000 ***
