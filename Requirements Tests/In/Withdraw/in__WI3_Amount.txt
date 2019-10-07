@@ -3,9 +3,11 @@ createacct 1234567 NAME
 logout
 
 login machine
+deposit 1234567 990
 withdraw 1234567 100
 withdraw 1234567 1001
 withdraw 1234567 100a
+withdraw 1234567 991
 logout
 
 login agent
