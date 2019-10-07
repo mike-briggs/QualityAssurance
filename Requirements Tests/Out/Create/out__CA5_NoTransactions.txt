@@ -1,10 +1,11 @@
 NEW 1234567 000 0000000 INITACC
 EOS 0000000 000 0000000 ***
 
+DEP 1234567 1000 0000000 NAME
 NEW 1234567 000 0000000 PROPERNAME
-ERROR account does not exist
-ERROR account does not exist
-ERROR account does not exist
+ERROR transactions not accepted in session
+ERROR transactions not accepted in session
+ERROR transactions not accepted in session
 EOS 0000000 000 0000000 ***
 
 
