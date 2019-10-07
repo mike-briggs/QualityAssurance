@@ -8,5 +8,4 @@ logout
 
 login agent
 deleteacct 1234567 NAME
-deleteacct 7654321 NAMEACC
 logout
