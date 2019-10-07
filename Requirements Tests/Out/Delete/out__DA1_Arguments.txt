@@ -1,7 +1,7 @@
 NEW 1234567 000 0000000 accountname
 EOS 0000000 000 ***
-No account name or number specified
-No account name specified
-No account number specified
+ERROR No account name or number specified
+ERROR No account name specified
+ERROR No account number specified
 DEL 1234567 000 0000000 accountname
 EOS 0000000 000 ***
