@@ -1,0 +1,18 @@
+login agent
+createacct 1234567 NAME
+createacct 7654321 EMAN
+logout
+
+login agent
+deposit 1234567 20000
+logout
+
+login machine
+transfer 1234567 7654321 5001
+transfer 1234567 7654321 5001
+logout
+
+login
+deleteacct 1234567 NAME
+deleteacct 7654321 EMAN
+logout
