@@ -1,0 +1,11 @@
+login agent
+createacct 1234567 NAME
+logout
+
+login agent
+withdraw 1234567 100
+withdraw 1234567
+withdraw 100
+withdraw
+deleteacct 1234567 NAME
+logout
