@@ -1,0 +1,9 @@
+NEW 1234567 000 0000000 NAME
+ERROR account name is invalid
+ERROR account name is invalid
+ERROR account name is invalid
+ERROR account name is invalid
+ERROR account name is invalid
+
+DEL 1234567 000 0000000 NAME
+EOS 0000000 000 0000000 ***
