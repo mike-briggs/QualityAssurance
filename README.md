@@ -1,1 +1,1 @@
-# KoalityAssured
+# KoalityAssured 🐼🐼🐼
