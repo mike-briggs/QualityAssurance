@@ -1,0 +1,6 @@
+NEW 1234567 000 0000000 accountname
+EOS 0000000 000 ***
+You do not have delete priviledges
+EOS 0000000 000 ***
+DEL 1234567 000 0000000 accountname
+EOS 0000000 000 ***
