@@ -1,5 +1,7 @@
 login agent
 createacct 1234567 accountname
+logout
+login agent
 deleteacct
 deleteacct 1234567
 deleteacct accountname

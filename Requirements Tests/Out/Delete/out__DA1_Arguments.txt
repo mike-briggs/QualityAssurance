@@ -1,4 +1,5 @@
 NEW 1234567 000 0000000 accountname
+EOS 0000000 000 ***
 No account name or number specified
 No account name specified
 No account number specified
