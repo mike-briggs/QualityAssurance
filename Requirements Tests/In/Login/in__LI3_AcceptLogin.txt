@@ -2,14 +2,14 @@ login machine
 deposit 1234567 1234
 withdrawal 1234567 1234
 transfer 1234567 1234 7654321
-createacct 1234567 account_name
-deleteacct 1234567 account_name
+createacct 1234567 accountname
+deleteacct 1234567 accountname
 logout
 
 login agent
 deposit 1234567 1234
-withdrawal 1234567 1234
+withdraw 1234567 1234
 transfer 1234567 1234 7654321
-createacct 1234567 account_name
-deleteacct 1234567 account_name
+createacct 1234567 accountname
+deleteacct 1234567 accountname
 logout
