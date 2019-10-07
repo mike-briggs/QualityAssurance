@@ -1,0 +1,7 @@
+login agent
+createacct 1234567 accountname
+createacct 1234567 accountname2
+createacct 12345678 accountname3
+createacct 123456 accountname4
+createacct 0123456 accountname5
+createacct A012345 accountname6

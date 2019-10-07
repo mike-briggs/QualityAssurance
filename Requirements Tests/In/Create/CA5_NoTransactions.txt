@@ -1,0 +1,10 @@
+login agent
+createacct 1237659 transferacc
+logout
+
+login agent
+createacct 1237654 propername
+deposit 1237654 10000
+withdraw 1237654 5000
+transfer 1237654 1237659 5000
+logout agent
