@@ -49,7 +49,43 @@ def logout(transaction, listOfAccounts):
     return True
 
 
-def deposit(transaction, listOfAccounts):
+def deposit(transaction, listOfAccounts, login, outputFile):
+    delimited = transaction.split(" ")
+    acctNum = delimited[1]
+    amount = delimited[2]
+
+    file = open(outputFile, "w+")
+
+    # Validation cases
+    if login == 0:
+        file.write("You are not logged in.")
+
+        file.close()
+        return False
+
+    if len(acctNum) != 7 or not acctNum.isdigit():
+        file.write("Invalid account number.")
+
+        file.close()
+        return False
+
+    if acctNum not in listOfAccounts:
+        file.write("Withdrawal account does not exist.")
+
+        file.close()
+        return False
+
+    if not amount.isdigit():
+        file.write("Amount is not a valid amount.")
+
+        file.close()
+        return False
+
+    if (login == 1 and amount > 1000) or (login == 2 and amount > 999999.99):
+        file.write("Over withdrawal limit.")
+
+        file.close()
+        return False
 
     return True
 
@@ -98,6 +134,8 @@ def withdrawal(transaction, listOfAccounts, login, outputFile):
 
         file.close()
         return False
+
+    file.write("WDR "+acctNum+" "+amount+" 0000000 name")
 
     return True
 
