@@ -86,8 +86,15 @@ def withdrawal(transaction, listOfAccounts, login, outputFile):
         file.close()
         return False
 
-    if login == 1 and amount > 1000 or login == 2 and amount > 999999.99:
+    if (login == 1 and amount > 1000) or (login == 2 and amount > 999999.99):
         file.write("Over withdrawal limit.")
+
+        file.close()
+        return False
+
+    # NOT FINISHED CHECK OVER DAILY LIMIT ##################################################
+    if login == 1 and amount > 5000:
+        file.write("Amount is not a valid amount.")
 
         file.close()
         return False
