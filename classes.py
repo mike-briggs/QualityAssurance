@@ -20,12 +20,10 @@ class session:
 
 
 class account:
-    def __init__(self, accountNumber, accountName, password, fname, lname):
+    def __init__(self, accountNumber, accountName, balance):
         self.accountNumber = accountNumber
         self.accountName = accountName
-        self.password = password
-        self.fname = fname
-        self.lname = lname
+        self.balance = balance
 
     def setAccountNumber(self, accNumber):
         self.accountNumber = accNumber
@@ -33,18 +31,5 @@ class account:
     def setAccountName(self, accName):
         self.accountName = accName
 
-    def getName(self):
-        print(self.fname+" "+self.lname)
-
-    def setName(self, first, last):
-        self.fname = first
-        self.lname = last
-
-    def setUsername(self, un):
-        self.username = un
-
-    def getUsername(self):
-        print(self.username)
-
-    def setPassword(self, pw):
-        self.password = pw
+    def setBalance(self, bal):
+        self.balance = bal
