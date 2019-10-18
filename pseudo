@@ -1,0 +1,80 @@
+
+readValidAccounts( validAccountList.txt ){
+  MasterAccountList = [];
+
+  readFile validAccountList.txt
+  while line != "00000000"
+    line = read line
+    tempNum, tempBal, tempName = split( line, " " )
+
+    acct = new account ( tempNum, tempBal, tempName );
+    MasterAccountList.add( acct );
+  end
+
+  return MasterAccountList;
+}
+
+readInTransactions ( transactionList.txt  ){
+  MasterTransactionsList = [];
+
+  readFile transactionList.txt
+  while line != "eof"
+    line = read line
+    MasterTransactionsList.add(line);
+  end
+
+  return MasterTransactionsList;
+}
+
+main () {
+  accounts = readValidAccounts( txt )
+  transactions = readInTransactions( txt )
+  output = [];
+  loginState = 0;  // 0 means logged out, 1 means machine, 2 means agent
+
+  for size of transactions using i
+    current = transactions(i)
+    type = (first split of)  split( current )
+
+    if type = "withdraw"
+      withdraw ( current, accounts (passed by reference), loginState, output )
+    if type = "deposit"
+      deposit ( current, accounts, loginState, output )
+    if type = "transfer"
+      transfer ( current, accounts, loginState, output )
+    if type = "createacct"
+      createacct ( current, accounts, loginState, output )   // tempacct = new account (sadfasf), accounts.add(tempacct)
+    if type = "deleteacct"
+      deleteacct (current, accounts, loginState, output )
+    if type = "login"
+      login ( current, accounts, loginState, output )
+    if type = "logout"
+      logout ( current, accounts, loginState, output )
+
+  end
+}
+
+withdraw ( trans, accounts, loginState, output ) {
+  split (trans)
+  acctNum = split[1]
+  amt = split[2]
+  name = get account name
+
+  if loginState = 0 {
+    output.append( "You are not logged in")
+    return
+  }
+
+  if acctNum has not 7 digits or has non-number character {
+    output append "Withdraw Invalid account number"
+    return
+  }
+
+  if acctNum not in accounts list {
+    output append
+  }
+
+
+  output.appened( "WDR %d %d 00000000 %s", acctNum, amt, name)
+
+}
