@@ -33,3 +33,6 @@ class Account:
 
     def setBalance(self, bal):
         self.balance = bal
+
+    def getAccountName(self, accNumber):
+        return self.accountName
