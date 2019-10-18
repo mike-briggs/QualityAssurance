@@ -1,4 +1,4 @@
-class session:
+class Session:
     def __init__(self, uid, sessionType, timeSignedIn):
         self.uid = uid
         self.sesionType = sessionType
@@ -19,7 +19,7 @@ class session:
         self.timeSignedIn = None
 
 
-class account:
+class Account:
     def __init__(self, accountNumber, accountName, balance):
         self.accountNumber = accountNumber
         self.accountName = accountName
