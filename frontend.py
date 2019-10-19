@@ -35,12 +35,25 @@ def readInTransactions(filename):
     return masterTransactionsList
 
 
-def login(transaction, listOfAccounts, outputFile):
+def login(transaction, listOfAccounts, login, outputFile):
+    file = open(outputFile, "w+")
+    delimited = transaction.split(" ")
+    type = delimited[1]
 
-    return True
+    # Validation cases
+    if type not "machine" and type not "agent"  # Invalid user type
+        file.write("Invalid user type")
+    elif login == 1 or login == 2               # Already logged in
+        file.write("Already logged in")
+    elif type == "machine"                      # login machine
+        return 1
+    elif type == "agent"                        # login agent
+        return 2
+    else
+        return 0
 
 
-def logout(transaction, listOfAccounts, outputFile):
+def logout(transaction, listOfAccounts, login, outputFile):
 
     return True
 
@@ -163,9 +176,9 @@ def main():
         current = transactions[i]
         line = current.split(" ")
         if line[0] == "login":
-            loginState = login(current, accounts, outputFile)
+            loginState = login(current, accounts, login, outputFile)
         elif line[0] == "logout":
-            loginState = logout(current, accounts, outputFile)
+            loginState = logout(current, accounts, login, outputFile)
         elif line[0] == "deposit":
             deposit(current, accounts, loginState, outputFile)
         elif line[0] == "withdrawal":
