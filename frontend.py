@@ -4,16 +4,14 @@ from classes import Account
 
 def readValidAccounts(filename):
 
-    masterAccountsList = []                      # initialize master list of accounts
+    masterAccountsList = [] # initialize master list of accounts
     accountsFile = open(filename, "r")      # read the file
     numLinesInFile = sum(1 for line in open(filename))  # get number of lines in the file
 
     # for every line in the file
     for i in numLinesInFile:
-        # read line
-        line = accountsFile.readline()
-        # append new account to master list
-        masterAccountsList.append(line)
+        line = accountsFile.readline()  # read line
+        masterAccountsList.append(line) # append new account to master list
 
     accountsFile.close()
 
@@ -22,7 +20,7 @@ def readValidAccounts(filename):
 
 def readInTransactions(filename):
 
-    masterTransactionsList = []     # initialize master list of transactions
+    masterTransactionsList = [] # initialize master list of transactions
     transactionsFile = open(filename, "r") # read the file
     numLinesInFile = sum(1 for line in open(filename))
 
