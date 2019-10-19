@@ -5,7 +5,6 @@ from classes import Account
 def readValidAccounts(filename):
 
     masterAccountsList = []                      # initialize master list of accounts
-
     accountsFile = open(filename, "r")      # read the file
 
     # get number of lines in the file
@@ -13,10 +12,8 @@ def readValidAccounts(filename):
 
     # for every line in the file
     for i in numLinesInFile:
-
         # read line
         line = accountsFile.readline()
-
         # append new account to master list
         masterAccountsList.append(line)
 
@@ -26,10 +23,9 @@ def readValidAccounts(filename):
 
 
 def readInTransactions(filename):
-    masterTransactionsList = []
 
-    transactionsFile = open(filename, "r")
-
+    masterTransactionsList = []     # initialize master list of transactions
+    transactionsFile = open(filename, "r") # read the file
     numLinesInFile = sum(1 for line in open(filename))
 
     for i in numLinesInFile:
@@ -39,12 +35,12 @@ def readInTransactions(filename):
     return masterTransactionsList
 
 
-def login(transaction, listOfAccounts):
+def login(transaction, listOfAccounts, outputFile):
 
     return True
 
 
-def logout(transaction, listOfAccounts):
+def logout(transaction, listOfAccounts, outputFile):
 
     return True
 
@@ -59,38 +55,25 @@ def deposit(transaction, listOfAccounts, login, outputFile):
     # Validation cases
     if login == 0:
         file.write("You are not logged in.")
-
         file.close()
-        return False
-
-    if len(acctNum) != 7 or not acctNum.isdigit():
+    elif len(acctNum) != 7 or not acctNum.isdigit():
         file.write("Invalid account number.")
-
         file.close()
-        return False
-
-    if acctNum not in listOfAccounts:
-        file.write("Withdrawal account does not exist.")
-
+    elif acctNum not in listOfAccounts:
+        file.write("Deposit account does not exist.")
         file.close()
-        return False
-
-    if not amount.isdigit():
+    elif not amount.isdigit():
         file.write("Amount is not a valid amount.")
-
         file.close()
-        return False
-
-    if (login == 1 and amount > 1000) or (login == 2 and amount > 999999.99):
-        file.write("Over withdrawal limit.")
-
+    elif (login == 1 and amount > 1000) or (login == 2 and amount > 999999.99):
+        file.write("Over deposit limit.")
         file.close()
-        return False
-
+    else
+        file.write("DEP "+acctNum+" "+amount+" name")
     return True
 
 
-def withdrawal(transaction, listOfAccounts, login, outputFile):
+def withdraw(transaction, listOfAccounts, login, outputFile):
     delimited = transaction.split(" ")
     acctNum = delimited[1]
     amount = delimited[2]
@@ -98,52 +81,63 @@ def withdrawal(transaction, listOfAccounts, login, outputFile):
     file = open(outputFile, "w+")
 
     # Validation cases
-    if login == 0:
+    if login == 0:              # If not logged in, error
         file.write("You are not logged in.")
-
         file.close()
-        return False
-
-    if len(acctNum) != 7 or not acctNum.isdigit():
+    elif len(acctNum) != 7 or not acctNum.isdigit():    # If accout number not proper, error
         file.write("Invalid account number.")
-
         file.close()
-        return False
-
-    if acctNum not in listOfAccounts:
+    elif acctNum not in listOfAccounts:                 # Make sure account exists
         file.write("Withdrawal account does not exist.")
-
         file.close()
-        return False
-
-    if not amount.isdigit():
+    elif not amount.isdigit():                          # If amount not proper, error
         file.write("Amount is not a valid amount.")
-
         file.close()
-        return False
-
-    if (login == 1 and amount > 1000) or (login == 2 and amount > 999999.99):
+    elif (login == 1 and amount > 1000) or (login == 2 and amount > 999999.99): # Enforce limit
         file.write("Over withdrawal limit.")
-
         file.close()
-        return False
-
-    # NOT FINISHED CHECK OVER DAILY LIMIT ##################################################
-    if login == 1 and amount > 5000:
+    elif login == 1 and amount > 5000:                  # Daily limit: TODO
         file.write("Amount is not a valid amount.")
-
         file.close()
-        return False
-
     file.write("WDR "+acctNum+" "+amount+" 0000000 name")
-
     return True
 
 
-def transfer(transaction, listOfAccounts):
+def transfer(transaction, listOfAccounts, login, outputFile):
+
+    file = open(outputFile, "w+")
+    # to from balance
+    delimited = transaction.split(" ")
+    toAccount = delimited[1]
+    fromAccount = delimited[2]
+    amount = delimited[3]
+
+    # Validation cases
+    if login == 0:              # If not logged in, error
+        file.write("You are not logged in.")
+        file.close()
+    elif len(toAccount) != 7 or not toAccount.isdigit():    # If accout number not proper, error
+        file.write("Invalid account number.")
+        file.close()
+    elif len(fromAccount) != 7 or not fromAccount.isdigit():    # If accout number not proper, error
+        file.write("Invalid account number.")
+        file.close()
+    elif toAccount not in listOfAccounts or fromAccount not in listOfAccounts:   # Make sure account exists
+        file.write("Account does not exist.")
+        file.close()
+    elif not amount.isdigit():                          # If amount not proper, error
+        file.write("Amount is not a valid amount.")
+        file.close()
+    elif (login == 1 and amount > 1000) or (login == 2 and amount > 999999.99): # Enforce limit
+        file.write("Over withdrawal limit.")
+        file.close()
+    elif login == 1 and amount > 5000:                  # Daily limit: TODO
+        file.write("Amount is not a valid amount.")
+        file.close()
+    else
+        file.write("XFR "+toAccount+" "+amount+" "+fromAccount" name")
 
     return True
-
 
 def createacct(transaction, listOfAccounts):
 
@@ -158,11 +152,10 @@ def deleteacct(transaction, listOfAccounts):
 
 
 def main():
-    # array of strings
-    accounts = readValidAccounts("your_account_list_file.txt")
 
-    # array of strings
+    accounts = readValidAccounts("your_account_list_file.txt")
     transactions = readInTransactions("your_transaction_summary.txt")
+    outpufFile = "transactionSummary.txt"  #TODO
     loginState = 0
     numOfTransactions = len(transactions)
     i = 0
@@ -170,19 +163,18 @@ def main():
         current = transactions[i]
         line = current.split(" ")
         if line[0] == "login":
-            login(current, accounts)
+            loginState = login(current, accounts, outputFile)
         elif line[0] == "logout":
-            logout(current, accounts)
+            loginState = logout(current, accounts, outputFile)
         elif line[0] == "deposit":
-            deposit(current, accounts)
+            deposit(current, accounts, loginState, outputFile)
         elif line[0] == "withdrawal":
-            withdrawal(current, accounts)
+            withdrawal(current, accounts, loginState, outputFile)
         elif line[0] == "transfer":
-            transfer(current, accounts)
+            transfer(current, accounts, loginState, outputFile)
         elif line[0] == "createacct":
-            accounts = createacct(current, accounts)
+            accounts = createacct(current, accounts, loginState, outputFile)
         elif line[0] == "deleteacct":
-            accounts = deleteacct(current, accounts)
+            accounts = deleteacct(current, accounts, loginState, outputFile)
 
-
-print("Program Finished.")
+        print("Program Finished.")

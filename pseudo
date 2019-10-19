@@ -5,10 +5,8 @@ readValidAccounts( validAccountList.txt ){
   readFile validAccountList.txt
   while line != "00000000"
     line = read line
-    tempNum, tempBal, tempName = split( line, " " )
 
-    acct = new account ( tempNum, tempBal, tempName );
-    MasterAccountList.add( acct );
+    MasterAccountList.add( line );
   end
 
   return MasterAccountList;
@@ -58,23 +56,32 @@ withdraw ( trans, accounts, loginState, output ) {
   split (trans)
   acctNum = split[1]
   amt = split[2]
-  name = get account name
+  actName = get account name
 
   if loginState = 0 {
     output.append( "You are not logged in")
     return
   }
-
   if acctNum has not 7 digits or has non-number character {
     output append "Withdraw Invalid account number"
     return
   }
-
   if acctNum not in accounts list {
-    output append
+    output append "Withdraw Account does not exist"
+    return
   }
-
-
-  output.appened( "WDR %d %d 00000000 %s", acctNum, amt, name)
+  if amt not a number {
+    output "Withdraw Invalid Amount"
+    return
+  }
+  if loginState == 1 and amount > 1000 OR loginState == 2 and amount > 999999.99 {
+    output "Over withdraw limit"
+    return
+  }
+  if over daily withdraw limit {
+    output "Exceeds daily withdraw limit for account"
+    return
+  }
+  output.appened( "WDR %d %d 00000000 %s", acctNum, amt, acctName)
 
 }
