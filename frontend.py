@@ -146,7 +146,7 @@ def transfer(transaction, listOfAccounts, login, outputFile):
         file.write("Amount is not a valid amount.")
         file.close()
     else
-        file.write("XFR "+toAccount+" "+amount+" "+fromAccount" name")
+        file.write("XFR "+toAccount+" "+amount+" "+fromAccount+" name")
         file.close()
 
     return True
@@ -170,7 +170,7 @@ def createacct(transaction, listOfAccounts):
         file.write("Invalid account number.")
         file.close()
     else
-        file.write("NEW "+acctNum+" 0000 "+name)
+        file.write("NEW "+acctNum+" 000 "+"0000000 "+name)
         listOfAccounts.append(acctNum)
         file.close()
 
@@ -198,7 +198,7 @@ def deleteacct(transaction, listOfAccounts):
         file.write("Account does not exist.")
         file.close()
     else
-        file.write("DEL "+acctNum+" 0000 "+name)
+        file.write("DEL "+acctNum+" 000"+" 0000000 "+name)
         listOfAccounts.remove(acctNum)
         file.close()
 
