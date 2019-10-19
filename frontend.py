@@ -232,6 +232,6 @@ def main():
             accounts = createacct(current, accounts, loginState, outputFile)
         elif line[0] == "deleteacct":
             accounts = deleteacct(current, accounts, loginState, outputFile)
-        i++
+        i+=1
 
     print("Program Finished.")
