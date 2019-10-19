@@ -49,14 +49,14 @@ def login(transaction, listOfAccounts, login, outputFile):
         return 1
     elif type == "agent"                        # login agent
         return 2
-    else
-        return 0
 
+    return 0
 
 def logout(transaction, listOfAccounts, login, outputFile):
-
-    return True
-
+    file = open(outputFile, "w+")
+    if login == 0
+        file.write("You are not logged in")
+    return 0
 
 def deposit(transaction, listOfAccounts, login, outputFile):
     delimited = transaction.split(" ")
@@ -84,7 +84,6 @@ def deposit(transaction, listOfAccounts, login, outputFile):
     else
         file.write("DEP "+acctNum+" "+amount+" name")
     return True
-
 
 def withdraw(transaction, listOfAccounts, login, outputFile):
     delimited = transaction.split(" ")
@@ -114,7 +113,6 @@ def withdraw(transaction, listOfAccounts, login, outputFile):
         file.close()
     file.write("WDR "+acctNum+" "+amount+" 0000000 name")
     return True
-
 
 def transfer(transaction, listOfAccounts, login, outputFile):
 
@@ -153,13 +151,53 @@ def transfer(transaction, listOfAccounts, login, outputFile):
     return True
 
 def createacct(transaction, listOfAccounts):
+    # NEW to amount from name
+    file = open(outputFile, "w+")
+    delimited = transaction.split(" ")
 
-    return True
+    acctNum = delimited[1]
+    amount = delimited[2]
+    name = delimited[3]
 
+    # Validation cases
+    if login == 0:              # If not logged in, error
+        file.write("You are not logged in.")
+        file.close()
+    elif login == 1:
+        file.write("Not priviledged for this command")
+    elif len(acctNum) != 7 or not acctNum.isdigit():    # If accout number not proper, error
+        file.write("Invalid account number.")
+        file.close()
+    else
+        file.write("NEW "+acctNum+" 0000 "+name)
+        listOfAccounts.append(acctNum)
+
+    return listOfAccounts
 
 def deleteacct(transaction, listOfAccounts):
 
-    # delete the accout number from list of accounts
+    file = open(outputFile, "w+")
+    delimited = transaction.split(" ")
+
+    acctNum = delimited[1]
+    amount = delimited[2]
+    name = delimited[3]
+
+    # Validation cases
+    if login == 0:              # If not logged in, error
+        file.write("You are not logged in.")
+        file.close()
+    elif login == 1:
+        file.write("Not priviledged for this command")
+    elif len(acctNum) != 7 or not acctNum.isdigit():    # If accout number not proper, error
+        file.write("Invalid account number.")
+        file.close()
+    elif acctNum not in listOfAccounts:    # Make sure account exists
+        file.write("Account does not exist.")
+        file.close()
+    else
+        file.write("DEL "+acctNum+" 0000 "+name)
+        listOfAccounts.remove(acctNum)
 
     return listOfAccounts
 
