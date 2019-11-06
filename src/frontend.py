@@ -5,12 +5,18 @@ import json
 validAccounts = sys.argv[1]  # file path for "valid_accounts.txt"
 outputFilepath = sys.argv[2]  # file path for "out.actual.txt"
 inputFile = outputFilepath
-# outpufFile = "transactionSummary.txt"
+
 print("Welcome!")
 
 userInput = input('> ')
-loginState = 0
-i = 0
+print(userInput)
+# if(userInput == 'login'):
+#     login(current, accounts, login, outputFilepath)
+if(userInput == 'logout'):
+    logout(outputFilepath)
+
+# loginState = 0
+# i = 0
 # while i <= numOfTransactions:
 #     current = transactions[i]
 #     line = current.split(" ")
@@ -31,7 +37,7 @@ i = 0
 
 # i += 1
 
-print("Program Finished.")
+print("Program Finished.\n")
 
 
 # def readValidAccounts(filename):
@@ -64,33 +70,34 @@ print("Program Finished.")
 #     return masterTransactionsList
 
 
-def login(transaction, listOfAccounts, login, outputFile):
-    print('print inside function')
+# def login(transaction, listOfAccounts, login, outputFile):
+#     print('print inside function')
+#     with open(outputFile, 'w') as wf:
+#         wf.write('Write to actual')
+
+#     # file = open(outputFile, "w+")
+#     # delimited = transaction.split(" ")
+#     # types = delimited[1]
+
+#     # # Validation cases
+#     # if types != "machine" and types != "agent"
+#     # print("Invalid user type")
+#     # elif login == 1 or login == 2               # Already logged in
+#     # print("Already logged in")
+#     # elif types == "machine"                      # login machine
+#     # return 1
+#     # elif types == "agent"                        # login agent
+#     # return 2
+
+#     return 0
+
+
+def logout(outputFile):
+    print('inside function')
     with open(outputFile, 'w') as wf:
-        wf.write('Write to actual')
-
-    # file = open(outputFile, "w+")
-    # delimited = transaction.split(" ")
-    # types = delimited[1]
-
-    # # Validation cases
-    # if types != "machine" and types != "agent"
-    # print("Invalid user type")
-    # elif login == 1 or login == 2               # Already logged in
-    # print("Already logged in")
-    # elif types == "machine"                      # login machine
-    # return 1
-    # elif types == "agent"                        # login agent
-    # return 2
+        wf.write('You are not logged in')
 
     return 0
-
-
-# def logout(transaction, listOfAccounts, login, outputFile):
-#     file = open(outputFile, "w+")
-#     if login == 0
-#     print("You are not logged in")
-#     return 0
 
 
 # def deposit(transaction, listOfAccounts, login, outputFile):

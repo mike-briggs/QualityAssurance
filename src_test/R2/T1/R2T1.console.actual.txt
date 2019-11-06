@@ -1,3 +1,4 @@
 Welcome!
-> ../src/frontend.py
-Program Finished.
+> logout
+it is logout
+./R2/T1/R2T1.out.actual.txt

@@ -1,3 +1,4 @@
 Welcome!
-> ../src/frontend.py
+> deposit 1234567 1234
 Program Finished.
+
