@@ -32,14 +32,16 @@ def login(line, outputFile):
 def deposit(line, outputFile, validAccounts):
 
     # Validation cases
-    acctNum = input()  # account num
-
+    acctNum = input("Enter account number: ")  # account num
     print(acctNum)
 
     if len(acctNum) != 7 or not acctNum.isdigit():
         print("Invalid account number.")
+        return False
     else:
-        print("Valid account number")
+        amount = input("Enter amount: ")
+        print(amount)
+        return True
         # elif acctNum not in listOfAccounts:
         # print("Deposit account does not sexist.")
 
@@ -70,8 +72,9 @@ with open(outputFilepath, 'w') as wf:
 if(userInput == 'login'):
     loginStatus = login(userInput, outputFilepath)
     if(loginStatus > 0):    # if logged in
-        userInput = input("Enter action: ")
         while(loginStatus > 0):
+            userInput = input("Enter action: ")
+            print(userInput)
             if userInput == "logout":
                 loginStatus = logout(userInput, outputFilepath)
             elif userInput == "deposit":
@@ -84,7 +87,7 @@ if(userInput == 'login'):
             #     accounts = createacct(current, accounts, loginState, outputFile)
             # elif userInput == "deleteacct":
             #     accounts = deleteacct(current, accounts, loginState, outputFile)
-if(userInput == 'logout'):
+elif(userInput == 'logout'):
     print("You are not logged in")
 
 # def readValidAccounts(filename):

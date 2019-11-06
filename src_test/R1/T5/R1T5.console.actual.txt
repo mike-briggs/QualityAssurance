@@ -2,7 +2,7 @@ Welcome to Quinterac
 > login
 Enter mode: agent
 Login Successful
-Enter action: 1234567
-Valid account number
-1234
-Invalid account number.
+Enter action: deposit
+Enter account number: 1234567
+Enter amount: 1234
+Enter action: 
