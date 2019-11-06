@@ -1,0 +1,4 @@
+Welcome to Quinterac
+> login
+Enter mode: not_a_type
+Invalid type

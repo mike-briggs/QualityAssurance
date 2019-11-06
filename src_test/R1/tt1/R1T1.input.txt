@@ -1,5 +1,0 @@
-login
-login machine
-login agent
-login not_a_type
-logout

@@ -3,14 +3,9 @@ import sys
 import json
 
 
-def logout(line, outputFile, loginState):
-    if(loginState == 0):
-        with open(outputFile, 'w') as wf:
-            wf.write('You are not logged in')
-            return -1
-    else:
-        with open(outputFile, 'w') as wf:
-            wf.write('EOS 0000000 000 0000000 ***')
+def logout(line, outputFile):
+    with open(outputFile, 'w') as wf:
+        wf.write('EOS 0000000 000 0000000 ***')
 
     return 0
 
@@ -18,96 +13,80 @@ def logout(line, outputFile, loginState):
 # -1    - error/not logged in
 
 
-def login(line, outputFile, loginState):
-    arg2 = input()
-    if(arg2):      # check if there are more input args
-        if(arg2 == 'machine' or arg2 == 'agent'):
-            with open(outputFile, 'w') as wf:
-                wf.write('\n')      # successful login
-            if(arg2 == 'machine'):
-                loginState = 1
-            else:
-                loginState = 2
-            return 0
-        elif(arg2 == ' '):
-            print("Please enter a mode.")
-            with open(outputFile, 'w') as wf:
-                wf.write('No type defined')
-            return -1
+def login(line, outputFile):
+    arg2 = input('Enter mode: ')
+    print(arg2)
+
+    if(arg2 == 'machine' or arg2 == 'agent'):
+        print("Login Successful")
+        if(arg2 == 'machine'):
+            return 1
         else:
-            with open(outputFile, 'w') as wf:
-                wf.write('No type defined')
-            loginState = -1
-            return -1
-    elif(loginState == 1 or loginState == 2):
-        with open(outputFile, 'w') as wf:
-            wf.write('Already logged in')
+            return 2
         return 0
-    elif(arg2 == ' '):
-        print("Please enter a mode.")
-        with open(outputFile, 'w') as wf:
-            wf.write('No type defined')
-        return -1
     else:
-        print("Please enter a mode.")
-        with open(outputFile, 'w') as wf:
-            wf.write('No type defined')
+        print("Invalid type")
         return -1
 
-    # file = open(outputFile, "w+")
-    # delimited = transaction.split(" ")
-    # types = delimited[1]
+
+def deposit(line, outputFile, validAccounts):
 
     # Validation cases
-    # if types != "machine" and types != "agent"
-    # print("Invalid user type")
-    # elif login == 1 or login == 2               # Already logged in
-    # print("Already logged in")
-    # elif types == "machine"                      # login machine
-    # return 1
-    # elif types == "agent"                        # login agent
-    # return 2
+    acctNum = input()  # account num
+
+    print(acctNum)
+
+    if len(acctNum) != 7 or not acctNum.isdigit():
+        print("Invalid account number.")
+    else:
+        print("keep going")
+        # elif acctNum not in listOfAccounts:
+        # print("Deposit account does not sexist.")
+
+        # if not amount.isdigit():
+        #     print("Amount is not a valid amount.")
+        # elif (login == 1 and amount > 1000) or (login == 2 and amount > 999999.99):
+        #     print("Over deposit limit.")
+        # else:
+        #     print("DEP "+acctNum+" "+amount+" name")
+
+        # main
 
 
-# main
-
-
-validAccounts = sys.argv[1]  # file path for "valid_accounts.txt"
+validAccountsPath = sys.argv[1]  # file path for "valid_accounts.txt"
 outputFilepath = sys.argv[2]  # file path for "out.actual.txt"
 
 loginStatus = 0
 
+file = open(validAccountsPath, 'r')
+validAccounts = file.read().split(',')
+
 print("Welcome to Quinterac")
 userInput = input('> ')
 print(userInput)
+with open(outputFilepath, 'w') as wf:
+    wf.write('')
 
 if(userInput == 'login'):
-    login(userInput, outputFilepath, loginStatus)
+    loginStatus = login(userInput, outputFilepath)
+    print("after login")
+    if(loginStatus > 0):    # if logged in
+        userInput = input("whats next?")
+        while(loginStatus > 0):
+            if userInput == "logout":
+                loginStatus = logout(userInput, outputFilepath)
+            elif userInput == "deposit":
+                deposit(userInput, outputFilepath, validAccounts)
+            # elif userInput == "withdraw":
+            #     withdraw(current, accounts, loginState, outputFile)
+            # elif userInput == "transfer":
+            #     transfer(current, accounts, loginState, outputFile)
+            # elif userInput == "createacct":
+            #     accounts = createacct(current, accounts, loginState, outputFile)
+            # elif userInput == "deleteacct":
+            #     accounts = deleteacct(current, accounts, loginState, outputFile)
 if(userInput == 'logout'):
-    logout(userInput, outputFilepath, loginStatus)
-
-
-# loginState = 0
-# i = 0
-# while i <= numOfTransactions:
-#     current = transactions[i]
-#     line = current.split(" ")
-#     if line[0] == "login":
-#         loginState = login(current, accounts, login, outputFilepath)
-#     elif line[0] == "logout":
-#         loginState = logout(current, accounts, login, outputFile)
-#     elif line[0] == "deposit":
-#         deposit(current, accounts, loginState, outputFile)
-#     elif line[0] == "withdraw":
-#         withdraw(current, accounts, loginState, outputFile)
-#     elif line[0] == "transfer":
-#         transfer(current, accounts, loginState, outputFile)
-#     elif line[0] == "createacct":
-#         accounts = createacct(current, accounts, loginState, outputFile)
-#     elif line[0] == "deleteacct":
-#         accounts = deleteacct(current, accounts, loginState, outputFile)
-
-# i += 1
+    print("You are not logged in")
 
 # def readValidAccounts(filename):
 
@@ -137,36 +116,6 @@ if(userInput == 'logout'):
 #         masterTransactionsList.append(line)
 
 #     return masterTransactionsList
-
-
-# def deposit(transaction, listOfAccounts, login, outputFile):
-
-#     delimited = transaction.split(" ")
-#     acctNum = delimited[1]
-#     amount = delimited[2]
-
-#     file = open(outputFile, "w+")
-
-#     # Validation cases
-#     if login == 0:
-#         print("You are not logged in.")
-
-#     elif len(acctNum) != 7 or not acctNum.isdigit():
-#         print("Invalid account number.")
-
-#     elif acctNum not in listOfAccounts:
-#         print("Deposit account does not exist.")
-
-#     elif not amount.isdigit():
-#         print("Amount is not a valid amount.")
-
-#     elif (login == 1 and amount > 1000) or (login == 2 and amount > 999999.99):
-#         print("Over deposit limit.")
-
-#     else
-#     print("DEP "+acctNum+" "+amount+" name")
-
-#     return True
 
 
 # def withdraw(transaction, listOfAccounts, login, outputFile):
