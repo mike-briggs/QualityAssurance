@@ -2,3 +2,7 @@ Welcome to Quinterac
 > login
 Enter mode: agent
 Login Successful
+Enter action: 1234567
+Valid account number
+1234
+Invalid account number.

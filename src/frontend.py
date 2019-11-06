@@ -39,7 +39,7 @@ def deposit(line, outputFile, validAccounts):
     if len(acctNum) != 7 or not acctNum.isdigit():
         print("Invalid account number.")
     else:
-        print("keep going")
+        print("Valid account number")
         # elif acctNum not in listOfAccounts:
         # print("Deposit account does not sexist.")
 
@@ -69,9 +69,8 @@ with open(outputFilepath, 'w') as wf:
 
 if(userInput == 'login'):
     loginStatus = login(userInput, outputFilepath)
-    print("after login")
     if(loginStatus > 0):    # if logged in
-        userInput = input("whats next?")
+        userInput = input("Enter action: ")
         while(loginStatus > 0):
             if userInput == "logout":
                 loginStatus = logout(userInput, outputFilepath)
