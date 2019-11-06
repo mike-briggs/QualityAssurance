@@ -1,0 +1,13 @@
+deposit 1234567 1234
+withdrawal 1234567 1234
+transfer 1234567 1234 7654321
+createacct 1234567 accountname
+deleteacct 1234567 accountname
+
+login agent
+deposit 1234567 1234
+withdrawal 1234567 1234
+transfer 1234567 1234 7654321
+createacct 1234567 accountname
+deleteacct 1234567 accountname
+logout

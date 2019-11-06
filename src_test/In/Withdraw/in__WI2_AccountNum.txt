@@ -1,0 +1,13 @@
+login agent
+createacct 1234567 NAME
+logout
+
+login agent
+deposit 1234567 1000
+withdraw 1234567 100
+withdraw 12345678 100
+withdraw 123456 100
+withdraw 0123456 100
+withdraw 7654321 100
+deleteacct 1234567 NAME
+logout

@@ -1,0 +1,7 @@
+login machine
+login agent
+
+login agent
+logout
+login agent
+logout
