@@ -14,18 +14,45 @@ def logout(line, outputFile, loginState):
 
     return 0
 
+# 0     - success/already logged in
+# -1    - error/not logged in
+
 
 def login(line, outputFile, loginState):
-    if(line[1]):
-        if(line[1] == 'machine' or line[1] == 'agent'):
+    arg2 = input()
+    if(arg2):      # check if there are more input args
+        if(arg2 == 'machine' or arg2 == 'agent'):
             with open(outputFile, 'w') as wf:
                 wf.write('\n')      # successful login
+            if(arg2 == 'machine'):
+                loginState = 1
+            else:
+                loginState = 2
+            return 0
+        elif(arg2 == ' '):
+            print("Please enter a mode.")
+            with open(outputFile, 'w') as wf:
+                wf.write('No type defined')
+            return -1
         else:
             with open(outputFile, 'w') as wf:
                 wf.write('No type defined')
-    else:
+            loginState = -1
+            return -1
+    elif(loginState == 1 or loginState == 2):
+        with open(outputFile, 'w') as wf:
+            wf.write('Already logged in')
+        return 0
+    elif(arg2 == ' '):
+        print("Please enter a mode.")
         with open(outputFile, 'w') as wf:
             wf.write('No type defined')
+        return -1
+    else:
+        print("Please enter a mode.")
+        with open(outputFile, 'w') as wf:
+            wf.write('No type defined')
+        return -1
 
     # file = open(outputFile, "w+")
     # delimited = transaction.split(" ")
@@ -41,7 +68,6 @@ def login(line, outputFile, loginState):
     # elif types == "agent"                        # login agent
     # return 2
 
-    return 0
 
 # main
 
@@ -53,13 +79,12 @@ loginStatus = 0
 
 print("Welcome to Quinterac")
 userInput = input('> ')
-parsed = userInput.split(' ')
-print(parsed[0])
+print(userInput)
 
 if(userInput == 'login'):
-    login(parsed, outputFilepath, loginStatus)
-if(parsed[0] == 'logout'):
-    logout(parsed, outputFilepath, loginStatus)
+    login(userInput, outputFilepath, loginStatus)
+if(userInput == 'logout'):
+    logout(userInput, outputFilepath, loginStatus)
 
 
 # loginState = 0

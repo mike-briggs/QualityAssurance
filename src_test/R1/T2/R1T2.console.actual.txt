@@ -1,2 +1,2 @@
 Welcome to Quinterac
-> deposit
+> deposit 1234567 1234
