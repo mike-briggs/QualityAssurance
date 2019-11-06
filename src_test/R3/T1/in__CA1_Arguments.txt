@@ -1,0 +1,10 @@
+login agent
+createacct 1234567 NAME
+createacct 7654321
+createacct othername
+createacct
+logout
+
+login agent
+deleteacct 1234567 NAME
+logout
