@@ -4,18 +4,14 @@ from classes import Account
 
 def readValidAccounts(filename):
 
-    masterAccountsList = []                      # initialize master list of accounts
+    masterAccountsList = [] # initialize master list of accounts
     accountsFile = open(filename, "r")      # read the file
-
-    # get number of lines in the file
-    numLinesInFile = sum(1 for line in open(filename))
+    numLinesInFile = sum(1 for line in open(filename))  # get number of lines in the file
 
     # for every line in the file
     for i in numLinesInFile:
-        # read line
-        line = accountsFile.readline()
-        # append new account to master list
-        masterAccountsList.append(line)
+        line = accountsFile.readline()  # read line
+        masterAccountsList.append(line) # append new account to master list
 
     accountsFile.close()
 
@@ -24,7 +20,7 @@ def readValidAccounts(filename):
 
 def readInTransactions(filename):
 
-    masterTransactionsList = []     # initialize master list of transactions
+    masterTransactionsList = [] # initialize master list of transactions
     transactionsFile = open(filename, "r") # read the file
     numLinesInFile = sum(1 for line in open(filename))
 
@@ -36,6 +32,7 @@ def readInTransactions(filename):
 
 
 def login(transaction, listOfAccounts, login, outputFile):
+    
     file = open(outputFile, "w+")
     delimited = transaction.split(" ")
     type = delimited[1]
@@ -59,6 +56,7 @@ def logout(transaction, listOfAccounts, login, outputFile):
     return 0
 
 def deposit(transaction, listOfAccounts, login, outputFile):
+    
     delimited = transaction.split(" ")
     acctNum = delimited[1]
     amount = delimited[2]
@@ -83,9 +81,11 @@ def deposit(transaction, listOfAccounts, login, outputFile):
         file.close()
     else
         file.write("DEP "+acctNum+" "+amount+" name")
+        file.close()
     return True
 
 def withdraw(transaction, listOfAccounts, login, outputFile):
+
     delimited = transaction.split(" ")
     acctNum = delimited[1]
     amount = delimited[2]
@@ -112,13 +112,13 @@ def withdraw(transaction, listOfAccounts, login, outputFile):
         file.write("Amount is not a valid amount.")
         file.close()
     file.write("WDR "+acctNum+" "+amount+" 0000000 name")
+    file.close()
     return True
 
 def transfer(transaction, listOfAccounts, login, outputFile):
 
     file = open(outputFile, "w+")
-    # to from balance
-    delimited = transaction.split(" ")
+    delimited = transaction.split(" ")  # to from balance
     toAccount = delimited[1]
     fromAccount = delimited[2]
     amount = delimited[3]
@@ -146,7 +146,8 @@ def transfer(transaction, listOfAccounts, login, outputFile):
         file.write("Amount is not a valid amount.")
         file.close()
     else
-        file.write("XFR "+toAccount+" "+amount+" "+fromAccount" name")
+        file.write("XFR "+toAccount+" "+amount+" "+fromAccount+" name")
+        file.close()
 
     return True
 
@@ -169,8 +170,9 @@ def createacct(transaction, listOfAccounts):
         file.write("Invalid account number.")
         file.close()
     else
-        file.write("NEW "+acctNum+" 0000 "+name)
+        file.write("NEW "+acctNum+" 000 "+"0000000 "+name)
         listOfAccounts.append(acctNum)
+        file.close()
 
     return listOfAccounts
 
@@ -196,8 +198,9 @@ def deleteacct(transaction, listOfAccounts):
         file.write("Account does not exist.")
         file.close()
     else
-        file.write("DEL "+acctNum+" 0000 "+name)
+        file.write("DEL "+acctNum+" 000"+" 0000000 "+name)
         listOfAccounts.remove(acctNum)
+        file.close()
 
     return listOfAccounts
 
@@ -219,13 +222,14 @@ def main():
             loginState = logout(current, accounts, login, outputFile)
         elif line[0] == "deposit":
             deposit(current, accounts, loginState, outputFile)
-        elif line[0] == "withdrawal":
-            withdrawal(current, accounts, loginState, outputFile)
+        elif line[0] == "withdraw":
+            withdraw(current, accounts, loginState, outputFile)
         elif line[0] == "transfer":
             transfer(current, accounts, loginState, outputFile)
         elif line[0] == "createacct":
             accounts = createacct(current, accounts, loginState, outputFile)
         elif line[0] == "deleteacct":
             accounts = deleteacct(current, accounts, loginState, outputFile)
+        i+=1
 
-        print("Program Finished.")
+    print("Program Finished.")
