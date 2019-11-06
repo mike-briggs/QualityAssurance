@@ -9,15 +9,15 @@ transactions = sys.argv[2]
 print("Welcome!")
 
 userInput = input('> ')
-
+print(transactions)
 loginState = 0
 numOfTransactions = len(transactions)
 i = 0
-while i <= numOfTransactions:
-    current = transactions[i]
-    line = current.split(" ")
-    if line[0] == "login":
-        loginState = login(current, accounts, login, transactions)
+# while i <= numOfTransactions:
+#     current = transactions[i]
+#     line = current.split(" ")
+#     if line[0] == "login":
+#         loginState = login(current, accounts, login, transactions)
 #     elif line[0] == "logout":
 #         loginState = logout(current, accounts, login, outputFile)
 #     elif line[0] == "deposit":
@@ -31,7 +31,7 @@ while i <= numOfTransactions:
 #     elif line[0] == "deleteacct":
 #         accounts = deleteacct(current, accounts, loginState, outputFile)
 
-    i += 1
+# i += 1
 
 print("Program Finished.")
 
