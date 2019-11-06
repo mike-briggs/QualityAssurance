@@ -1,4 +1,4 @@
 Welcome!
-> deposit 1234567 1234
+> deposit
 Program Finished.
 

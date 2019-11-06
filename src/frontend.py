@@ -2,6 +2,13 @@ import os
 import sys
 import json
 
+
+def logout(outputFile):
+    with open(outputFile, 'w') as wf:
+        wf.write('You are not logged in')
+    return 0
+
+
 validAccounts = sys.argv[1]  # file path for "valid_accounts.txt"
 outputFilepath = sys.argv[2]  # file path for "out.actual.txt"
 inputFile = outputFilepath
@@ -9,10 +16,11 @@ inputFile = outputFilepath
 print("Welcome!")
 
 userInput = input('> ')
-print(userInput)
 # if(userInput == 'login'):
 #     login(current, accounts, login, outputFilepath)
-if(userInput == 'logout'):
+parsed = userInput.split(' ')
+print(parsed[0])
+if(parsed[0] == 'logout'):
     logout(outputFilepath)
 
 # loginState = 0
@@ -90,14 +98,6 @@ print("Program Finished.\n")
 #     # return 2
 
 #     return 0
-
-
-def logout(outputFile):
-    print('inside function')
-    with open(outputFile, 'w') as wf:
-        wf.write('You are not logged in')
-
-    return 0
 
 
 # def deposit(transaction, listOfAccounts, login, outputFile):

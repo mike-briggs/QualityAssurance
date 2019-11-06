@@ -1,4 +1,4 @@
 Welcome!
 > logout
-it is logout
-./R2/T1/R2T1.out.actual.txt
+Program Finished.
+

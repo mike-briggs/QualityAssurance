@@ -1,4 +1,4 @@
 Welcome!
-> login machine
+> login
 Program Finished.
 
