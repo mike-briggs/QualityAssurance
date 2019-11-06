@@ -2,22 +2,20 @@ import os
 import sys
 import json
 
-accounts = sys.argv[1]  # readValidAccounts("your_account_list_file.txt")
-# readInTransactions("your_transaction_summary.txt")
-transactions = sys.argv[2]
+validAccounts = sys.argv[1]  # file path for "valid_accounts.txt"
+outputFilepath = sys.argv[2]  # file path for "out.actual.txt"
+inputFile = outputFilepath
 # outpufFile = "transactionSummary.txt"
 print("Welcome!")
 
 userInput = input('> ')
-print(transactions)
 loginState = 0
-numOfTransactions = len(transactions)
 i = 0
 # while i <= numOfTransactions:
 #     current = transactions[i]
 #     line = current.split(" ")
 #     if line[0] == "login":
-#         loginState = login(current, accounts, login, transactions)
+#         loginState = login(current, accounts, login, outputFilepath)
 #     elif line[0] == "logout":
 #         loginState = logout(current, accounts, login, outputFile)
 #     elif line[0] == "deposit":

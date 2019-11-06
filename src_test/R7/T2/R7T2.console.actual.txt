@@ -1,3 +1,3 @@
 Welcome!
-> ./R7/T2/R7T2.out.actual.txt
+> ../src/frontend.py
 Program Finished.
