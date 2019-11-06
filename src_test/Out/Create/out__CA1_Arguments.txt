@@ -1,8 +1,0 @@
-NEW 1234567 000 0000000 NAME
-ERROR Missing account name
-ERROR Missing account number
-ERROR Missing account name and number
-EOS 0000000 000 0000000 ***
-
-DEL 1234567 000 0000000 NAME
-EOS 0000000 000 0000000 ***

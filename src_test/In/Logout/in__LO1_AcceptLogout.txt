@@ -1,3 +1,0 @@
-logout
-login machine
-logout
