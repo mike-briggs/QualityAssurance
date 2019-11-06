@@ -3,25 +3,64 @@ import sys
 import json
 
 
-def logout(outputFile):
-    with open(outputFile, 'w') as wf:
-        wf.write('You are not logged in')
+def logout(line, outputFile, loginState):
+    if(loginState == 0):
+        with open(outputFile, 'w') as wf:
+            wf.write('You are not logged in')
+            return -1
+    else:
+        with open(outputFile, 'w') as wf:
+            wf.write('EOS 0000000 000 0000000 ***')
+
     return 0
+
+
+def login(line, outputFile, loginState):
+    if(line[1]):
+        if(line[1] == 'machine' or line[1] == 'agent'):
+            with open(outputFile, 'w') as wf:
+                wf.write('\n')      # successful login
+        else:
+            with open(outputFile, 'w') as wf:
+                wf.write('No type defined')
+    else:
+        with open(outputFile, 'w') as wf:
+            wf.write('No type defined')
+
+    # file = open(outputFile, "w+")
+    # delimited = transaction.split(" ")
+    # types = delimited[1]
+
+    # Validation cases
+    # if types != "machine" and types != "agent"
+    # print("Invalid user type")
+    # elif login == 1 or login == 2               # Already logged in
+    # print("Already logged in")
+    # elif types == "machine"                      # login machine
+    # return 1
+    # elif types == "agent"                        # login agent
+    # return 2
+
+    return 0
+
+# main
 
 
 validAccounts = sys.argv[1]  # file path for "valid_accounts.txt"
 outputFilepath = sys.argv[2]  # file path for "out.actual.txt"
-inputFile = outputFilepath
 
-print("Welcome!")
+loginStatus = 0
 
+print("Welcome to Quinterac")
 userInput = input('> ')
-# if(userInput == 'login'):
-#     login(current, accounts, login, outputFilepath)
 parsed = userInput.split(' ')
 print(parsed[0])
+
+if(userInput == 'login'):
+    login(parsed, outputFilepath, loginStatus)
 if(parsed[0] == 'logout'):
-    logout(outputFilepath)
+    logout(parsed, outputFilepath, loginStatus)
+
 
 # loginState = 0
 # i = 0
@@ -44,9 +83,6 @@ if(parsed[0] == 'logout'):
 #         accounts = deleteacct(current, accounts, loginState, outputFile)
 
 # i += 1
-
-print("Program Finished.\n")
-
 
 # def readValidAccounts(filename):
 
@@ -76,28 +112,6 @@ print("Program Finished.\n")
 #         masterTransactionsList.append(line)
 
 #     return masterTransactionsList
-
-
-# def login(transaction, listOfAccounts, login, outputFile):
-#     print('print inside function')
-#     with open(outputFile, 'w') as wf:
-#         wf.write('Write to actual')
-
-#     # file = open(outputFile, "w+")
-#     # delimited = transaction.split(" ")
-#     # types = delimited[1]
-
-#     # # Validation cases
-#     # if types != "machine" and types != "agent"
-#     # print("Invalid user type")
-#     # elif login == 1 or login == 2               # Already logged in
-#     # print("Already logged in")
-#     # elif types == "machine"                      # login machine
-#     # return 1
-#     # elif types == "agent"                        # login agent
-#     # return 2
-
-#     return 0
 
 
 # def deposit(transaction, listOfAccounts, login, outputFile):

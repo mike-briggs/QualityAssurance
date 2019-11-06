@@ -1,4 +1,2 @@
-Welcome!
+Welcome to Quinterac
 > deposit
-Program Finished.
-
