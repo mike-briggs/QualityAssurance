@@ -35,13 +35,27 @@ def deposit(line, outputFile, validAccounts):
     acctNum = input("Enter account number: ")  # account num
     print(acctNum)
 
-    if len(acctNum) != 7 or not acctNum.isdigit():
+    if (len(acctNum) != 7 or not acctNum.isdigit()) or acctNum not in validAccounts:
         print("Invalid account number.")
         return False
     else:
         amount = input("Enter amount: ")
         print(amount)
-        return True
+
+        # TODO NEED TO VALIDATE THE AMOUNT
+
+        if(amount.isdigit()):
+            transactionString = 'DEP ' + \
+                str(acctNum)+' '+str(amount)+' 0000000 ***'
+
+            with open(outputFile, 'w') as wf:
+                wf.write(str(transactionString))
+            print("Funds successfully deposited")
+            return True
+        else:
+            print("Invalid amount.")
+            return False
+
         # elif acctNum not in listOfAccounts:
         # print("Deposit account does not sexist.")
 
@@ -50,7 +64,6 @@ def deposit(line, outputFile, validAccounts):
         # elif (login == 1 and amount > 1000) or (login == 2 and amount > 999999.99):
         #     print("Over deposit limit.")
         # else:
-        #     print("DEP "+acctNum+" "+amount+" name")
 
         # main
 
