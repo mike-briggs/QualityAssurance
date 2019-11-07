@@ -5,5 +5,5 @@ Login Successful
 Enter action: deposit
 Enter account number: 1234567
 Enter amount: 1234
-Funds successfully deposited
+Funds successfully deposited.
 Enter action: logout

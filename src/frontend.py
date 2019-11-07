@@ -56,7 +56,7 @@ def deposit(outputFile, validAccounts):
         # else:
 
 
-def withdraw(listOfAccounts, outputFile, validAccounts):
+def withdraw(outputFile, validAccounts):
 
     acctNum = input("Enter account number: ")  # account num
     print(acctNum)
@@ -143,6 +143,7 @@ def createacct(outputFile, validAccounts, validAccountsPath, loginState):
         print("You do not have the priviledge for this command.")
         return False
 
+
 def deleteacct(outputFile, validAccounts, loginState):
 
     if(loginState == 1):
@@ -158,10 +159,10 @@ def deleteacct(outputFile, validAccounts, loginState):
                 with open(outputFile, 'a') as wf:
                     wf.write('\nDEL '+acctNum+' 000 '+'0000000 '+acctName)
                 return True
-                
+
             else:
                 print("Invalid account name")
-                        
+
         else:
             print("Invalid account number.")
             return False
@@ -197,50 +198,18 @@ if(userInput == 'login'):
                 loginStatus = logout(outputFilepath)
             elif userInput == "deposit":
                 deposit(outputFilepath, validAccounts)
-            # elif userInput == "withdraw":
-            #     withdraw(current, accounts, loginState, outputFile)
+            elif userInput == "withdraw":
+                withdraw(outputFilepath, validAccounts)
             elif userInput == "transfer":
                 transfer(outputFilepath, validAccounts)
             elif userInput == "createacct":
                 createacct(outputFilepath, validAccounts,
                            validAccountsPath, loginStatus)
             elif userInput == "deleteacct":
-                accounts = deleteacct(outputFilepath, validAccounts, loginStatus)
+                accounts = deleteacct(
+                    outputFilepath, validAccounts, loginStatus)
 elif(userInput == 'logout'):
     print("You are not logged in")
-
-
-# def withdraw(transaction, listOfAccounts, login, outputFile):
-
-#     delimited = transaction.split(" ")
-#     acctNum = delimited[1]
-#     amount = delimited[2]
-
-#     file = open(outputFile, "w+")
-
-#     # Validation cases
-#     if login == 0:              # If not logged in, error
-#         print("You are not logged in.")
-
-#     elif len(acctNum) != 7 or not acctNum.isdigit():    # If accout number not proper, error
-#         print("Invalid account number.")
-
-#     elif acctNum not in listOfAccounts:                 # Make sure account exists
-#         print("Withdrawal account does not exist.")
-
-#     elif not amount.isdigit():                          # If amount not proper, error
-#         print("Amount is not a valid amount.")
-
-#     elif (login == 1 and amount > 1000) or (login == 2 and amount > 999999.99):  # Enforce limit
-#         print("Over withdrawal limit.")
-
-#     elif login == 1 and amount > 5000:                  # Daily limit: TODO
-#         print("Amount is not a valid amount.")
-
-#     print("WDR "+acctNum+" "+amount+" 0000000 name")
-
-#     return True
-
 
 # def deleteacct(transaction, listOfAccounts):
 
