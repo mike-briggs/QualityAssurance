@@ -1,6 +1,6 @@
 Welcome to Quinterac
 > logout
-You are not signed in
+You are not logged in
 > login
 Enter mode: machine
 machine
