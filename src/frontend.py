@@ -4,6 +4,12 @@ import json
 import re
 
 
+class Account:
+    def __init__(self, number, dep):
+        self.number = number
+        self.dep = dep
+
+
 def logout(outputFile):
     with open(outputFile, 'a') as wf:
         wf.write('\nEOS 0000000 000 0000000 ***')
@@ -27,8 +33,11 @@ def login(outputFile):
         print("Invalid type")
         return -1
 
+# failed deposit returns false
+# successful deposit returns array(accountNum,amount) deposited to update session/acount deposit limit
 
-def deposit(outputFile, validAccounts, loginState):
+
+def deposit(outputFile, validAccounts, loginState, accountDepositArray):
 
     # Validation cases
     acctNum = input("Enter account number: ")  # account num
@@ -49,10 +58,22 @@ def deposit(outputFile, validAccounts, loginState):
                 print("Over agent deposit limit.")
                 return False
             else:
-                with open(outputFile, 'a') as wf:
-                    wf.write('\nDEP '+acctNum+' '+amount+' 0000000 ***')
-                print("Funds successfully deposited.")
-                return True
+                # initiate dcurrently deposited to check daily limit
+                currentlyDeposited = 0
+                # find the array index with this account number and store how much was deposited in this session
+                for i in range(len(accountDepositArray)):
+                    if(accountDepositArray[i].number == acctNum):
+                        currentlyDeposited = accountDepositArray[i].dep
+                        break
+                if(currentlyDeposited > 5000):          # check if we can still deposit to this account
+                    print("Over daily depoist limit.")
+                    return False
+                else:
+                    # successful deposit
+                    with open(outputFile, 'a') as wf:
+                        wf.write('\nDEP '+acctNum+' '+amount+' 0000000 ***')
+                    print("Funds successfully deposited.")
+                    return [acctNum, amount]
         else:
             print("Invalid amount.")
             return False
@@ -186,6 +207,13 @@ loginStatus = 0
 file = open(validAccountsPath, 'r')
 validAccounts = file.read().split(',')
 
+# we need an array that holds account objects which hold
+# how much has been deposited in this session
+
+validAccountsObj = []
+for i in range(len(validAccounts)):
+    validAccountsObj.append(Account(validAccounts[i], 0))
+
 with open(outputFilepath, 'w') as wf:
     wf.write('')
 
@@ -205,7 +233,14 @@ while(True):
                 if userInput == "logout":
                     loginStatus = logout(outputFilepath)
                 elif userInput == "deposit":
-                    deposit(outputFilepath, validAccounts, loginStatus)
+                    amountDeposited = deposit(outputFilepath, validAccounts,
+                                              loginStatus, validAccountsObj)
+                    if(amountDeposited):
+                        # find account number and update amount of that account
+                        for i in range(len(validAccountsObj)):
+                            if(validAccountsObj[i].number == amountDeposited[0]):
+                                validAccountsObj[i].dep += int(
+                                    amountDeposited[1])
                 elif userInput == "withdraw":
                     withdraw(outputFilepath, validAccounts)
                 elif userInput == "transfer":
