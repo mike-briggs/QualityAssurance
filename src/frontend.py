@@ -133,13 +133,12 @@ def createacct(outputFile, validAccounts, validAccountsPath, loginState):
             else:
                 acctName = input("Enter account name: ")
                 print(acctName)
-                # TODO Account name not verified correctly
                 regex = "^ [A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _] *$"
                 if((len(acctName) >= 3 and len(acctName) <= 30) or re.match(regex, acctName) or acctName.startswith(' ') or acctName.endswith(' ')):
                     print("Account created successfully.")
                     with open(outputFile, 'a') as wf:
                         wf.write('\nNEW '+acctNum+' 000 '+'0000000 '+acctName)
-                    return True
+                    return acctNum
                 else:
                     print("Invalid account name.")
                     return False
@@ -211,8 +210,8 @@ while(True):
                 elif userInput == "transfer":
                     transfer(outputFilepath, validAccounts)
                 elif userInput == "createacct":
-                    createacct(outputFilepath, validAccounts,
-                               validAccountsPath, loginStatus)
+                    validAccounts.append(createacct(outputFilepath, validAccounts,
+                                                    validAccountsPath, loginStatus))
                 elif userInput == "deleteacct":
                     accounts = deleteacct(
                         outputFilepath, validAccounts, loginStatus)

@@ -1,10 +1,10 @@
 login
 agent
 createacct
-1234567
+1111111
 AccountName
 createacct
-1234567
+1111111
 AccountNM
 createacct
 12345678
@@ -17,10 +17,4 @@ NAME
 createacct
 A012345
 ACCNM
-logout
-login
-agent
-deleteacct
-12334567
-AccountName
 logout

@@ -4,11 +4,11 @@ Type 'exit' to leave
 Enter mode: agent
 Login Successful
 Enter action: createacct
-Enter account number: 1234567
-Account number already in use.
-Enter action: AccountName
+Enter account number: 1111111
+Enter account name: AccountName
+Account created successfully.
 Enter action: createacct
-Enter account number: 1234567
+Enter account number: 1111111
 Account number already in use.
 Enter action: AccountNM
 Enter action: createacct
@@ -26,15 +26,6 @@ Enter action: createacct
 Enter account number: A012345
 Invalid account number.
 Enter action: ACCNM
-Enter action: logout
-Type 'exit' to leave
-> login
-Enter mode: agent
-Login Successful
-Enter action: deleteacct
-Enter account number: 12334567
-Invalid account number.
-Enter action: AccountName
 Enter action: logout
 Type 'exit' to leave
 > 
