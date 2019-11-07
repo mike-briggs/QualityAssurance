@@ -7,6 +7,4 @@ logout
 login
 machine
 createacct
-2222222
-NAMEACC
 logout

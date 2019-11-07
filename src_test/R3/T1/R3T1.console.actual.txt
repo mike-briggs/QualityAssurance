@@ -10,13 +10,14 @@ Account created successfully.
 Enter action: createacct
 Enter account number: 2222222
 Enter account name: 
-Account created successfully.
+Invalid account name.
 Enter action: createacct
 Enter account number: 
-Enter account name: othername
-Account created successfully.
+Invalid account number.
+Enter action: othername
 Enter action: createacct
 Enter account number: 
-Enter account name: logout
-Account created successfully.
-Enter action: 
+Invalid account number.
+Enter action: logout
+Type 'exit' to leave
+> 

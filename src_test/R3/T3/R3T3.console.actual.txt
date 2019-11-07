@@ -13,18 +13,19 @@ Account number already in use.
 Enter action: AccountNM
 Enter action: createacct
 Enter account number: 12345678
-Enter account name: AccountNAME
-Account created successfully.
+Invalid account number.
+Enter action: AccountNAME
 Enter action: createacct
 Enter account number: 123456 ACCNAME
-Enter account name: createacct
-Account created successfully.
-Enter action: 0123456
+Invalid account number.
+Enter action: createacct
+Enter account number: 0123456
+Invalid account number.
 Enter action: NAME
 Enter action: createacct
 Enter account number: A012345
-Enter account name: ACCNM
-Account created successfully.
+Invalid account number.
+Enter action: ACCNM
 Enter action: logout
 Type 'exit' to leave
 > login
