@@ -1,3 +1,6 @@
-login machine
-deposit 1234567 1234
+login
+machine
+deposit
+1234567
+1234
 logout

@@ -1,0 +1,11 @@
+login agent
+createacct 1234567 NAME
+logout
+
+login machine
+createacct 7654321 NAMEACC
+logout
+
+login agent
+deleteacct 1234567 NAME
+logout

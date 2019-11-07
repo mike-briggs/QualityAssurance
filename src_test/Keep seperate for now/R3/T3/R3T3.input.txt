@@ -1,12 +1,26 @@
-login agent
-createacct 1234567 AccountName
-createacct 1234567 AccountNM
-createacct 12345678 AccountNAME
-createacct 123456 ACCNAME
-createacct 0123456 NAME
-createacct A012345 ACCNM
+login
+agent
+createacct
+1234567
+AccountName
+createacct
+1234567
+AccountNM
+createacct
+12345678
+AccountNAME
+createacct
+123456 ACCNAME
+createacct
+0123456
+NAME
+createacct
+A012345
+ACCNM
 logout
-
-login agent
-deleteacct 12334567 AccountName
+login
+agent
+deleteacct
+12334567
+AccountName
 logout

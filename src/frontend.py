@@ -43,7 +43,7 @@ def deposit(outputFile, validAccounts):
         if(amount.isdigit()):
             with open(outputFile, 'a') as wf:
                 wf.write('\nDEP '+acctNum+' '+amount+' 0000000 ***')
-            print("Funds successfully deposited")
+            print("Funds successfully deposited.")
             return True
         else:
             print("Invalid amount.")
@@ -161,9 +161,10 @@ with open(outputFilepath, 'w') as wf:
     wf.write('')
 
 if(userInput == 'login'):
+    # set login status with function
     loginStatus = login(outputFilepath)
-    if(loginStatus > 0):    # if logged in
-        while(loginStatus > 0):
+    if(loginStatus > 0):                                        # if logged in
+        while(loginStatus > 0):                                 # while session is active
             userInput = input("Enter action: ")
             print(userInput)
             if userInput == "logout":

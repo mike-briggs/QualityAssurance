@@ -1,0 +1,8 @@
+Welcome to Quinterac
+> login
+Enter mode: machine
+Enter action: deposit
+Enter account number: 1234567
+Enter amount: 1234
+Funds successfully deposited.
+logout

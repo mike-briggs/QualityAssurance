@@ -1,2 +1,9 @@
-Welcome!
-> 
+Welcome to Quinterac
+> logout
+You are not signed in
+> login
+Enter mode: machine
+machine
+Login successful.
+Enter action: logout
+logout
