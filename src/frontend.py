@@ -65,12 +65,14 @@ def transfer(outputFile, validAccounts):
     # If accout number not proper, error
     if len(fromAccount) != 7 or not fromAccount.isdigit() or fromAccount not in validAccounts:
         print("Invalid account number.")
+        return False
     else:
         toAccount = input("Enter (to) account: ")
         print(toAccount)
         # If accout number not proper, error
         if len(toAccount) != 7 or not toAccount.isdigit() or toAccount not in validAccounts or toAccount == fromAccount:
             print("Invalid account number.")
+            return False
         else:
             amount = input("Enter amount: ")
             print(amount)
@@ -80,8 +82,10 @@ def transfer(outputFile, validAccounts):
                 with open(outputFile, 'a') as wf:
                     wf.write('\nXFR '+toAccount+' ' +
                              amount+' '+fromAccount+' ***')
+                return True
             else:
                 print("Invalid amount.")
+                return False
 
     # elif (login == 1 and amount > 1000) or (login == 2 and amount > 999999.99):  # Enforce limit
     #     print("Over withdrawal limit.")
@@ -90,8 +94,6 @@ def transfer(outputFile, validAccounts):
     #     print("Amount is not a valid amount.")
 
     # else
-
-    return True
 
 # main
 
