@@ -143,6 +143,32 @@ def createacct(outputFile, validAccounts, validAccountsPath, loginState):
         print("You do not have the priviledge for this command.")
         return False
 
+def deleteacct(outputFile, validAccounts, loginState):
+
+    if(loginState == 1):
+        acctNum = input("Enter account number: ")
+        print(acctNum)
+
+        if(acctNum in validAccounts):
+            acctName = input("Enter account name: ")
+            print(acctName)
+
+            if((len(acctName) >= 3 and len(acctName) <= 30) or not acctName.isalnum() or acctName.startswith(' ') or acctName.endswith(' ')):
+                print("Account deleted successfully")
+                with open(outputFile, 'a') as wf:
+                    wf.write('\nDEL '+acctNum+' 000 '+'0000000 '+acctName)
+                return True
+                
+            else:
+                print("Invalid account name")
+                        
+        else:
+            print("Invalid account number.")
+            return False
+
+    else:
+        print("You do not have the priviledge for this command.")
+        return False
 # main
 
 
@@ -178,8 +204,8 @@ if(userInput == 'login'):
             elif userInput == "createacct":
                 createacct(outputFilepath, validAccounts,
                            validAccountsPath, loginStatus)
-            # elif userInput == "deleteacct":
-            #     accounts = deleteacct(current, accounts, loginState, outputFile)
+            elif userInput == "deleteacct":
+                accounts = deleteacct(outputFilepath, validAccounts, loginStatus)
 elif(userInput == 'logout'):
     print("You are not logged in")
 
