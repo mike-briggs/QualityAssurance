@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import re
 
 
 def logout(outputFile):
@@ -27,7 +28,7 @@ def login(outputFile):
         return -1
 
 
-def deposit(outputFile, validAccounts):
+def deposit(outputFile, validAccounts, loginState):
 
     # Validation cases
     acctNum = input("Enter account number: ")  # account num
@@ -41,19 +42,20 @@ def deposit(outputFile, validAccounts):
         print(amount)
 
         if(amount.isdigit()):
-            with open(outputFile, 'a') as wf:
-                wf.write('\nDEP '+acctNum+' '+amount+' 0000000 ***')
-            print("Funds successfully deposited.")
-            return True
+            if(loginState == 2 and int(amount) > 2000):
+                print("Over machine deposit limit.")
+                return False
+            elif(loginState == 1 and int(amount) > 99999999):
+                print("Over agent deposit limit.")
+                return False
+            else:
+                with open(outputFile, 'a') as wf:
+                    wf.write('\nDEP '+acctNum+' '+amount+' 0000000 ***')
+                print("Funds successfully deposited.")
+                return True
         else:
             print("Invalid amount.")
             return False
-
-        # if not amount.isdigit():
-        #     print("Amount is not a valid amount.")
-        # elif (login == 1 and amount > 1000) or (login == 2 and amount > 999999.99):
-        #     print("Over deposit limit.")
-        # else:
 
 
 def withdraw(outputFile, validAccounts):
@@ -127,17 +129,17 @@ def createacct(outputFile, validAccounts, validAccountsPath, loginState):
             print("Account number already in use.")
             return False
         else:
-            if(acctNum != 7 or not acctNum.isdigit() or str(acctNum)[:1]) == '0':
+            if(len(acctNum) != 7 or not acctNum.isdigit() or str(acctNum)[:1] == '0'):
                 print("Invalid account number.")
             else:
                 acctName = input("Enter account name: ")
                 print(acctName)
-                # TODO Account name not verified correctly
-                if((len(acctName) >= 3 and len(acctName) <= 30) or not acctName.isalnum() or acctName.startswith(' ') or acctName.endswith(' ')):
+                regex = "^ [A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _] *$"
+                if((len(acctName) >= 3 and len(acctName) <= 30) or re.match(regex, acctName) or acctName.startswith(' ') or acctName.endswith(' ')):
                     print("Account created successfully.")
                     with open(outputFile, 'a') as wf:
                         wf.write('\nNEW '+acctNum+' 000 '+'0000000 '+acctName)
-                    return True
+                    return acctNum
                 else:
                     print("Invalid account name.")
                     return False
@@ -184,13 +186,14 @@ loginStatus = 0
 file = open(validAccountsPath, 'r')
 validAccounts = file.read().split(',')
 
+with open(outputFilepath, 'w') as wf:
+    wf.write('')
+
 print("Welcome to Quinterac")
 while(True):
 
     userInput = input('Type \'exit\' to leave\n> ')
     print(userInput)
-    with open(outputFilepath, 'w') as wf:
-        wf.write('')
 
     if(userInput == 'login'):
         # set login status with function
@@ -202,14 +205,14 @@ while(True):
                 if userInput == "logout":
                     loginStatus = logout(outputFilepath)
                 elif userInput == "deposit":
-                    deposit(outputFilepath, validAccounts)
+                    deposit(outputFilepath, validAccounts, loginStatus)
                 elif userInput == "withdraw":
                     withdraw(outputFilepath, validAccounts)
                 elif userInput == "transfer":
                     transfer(outputFilepath, validAccounts)
                 elif userInput == "createacct":
-                    createacct(outputFilepath, validAccounts,
-                               validAccountsPath, loginStatus)
+                    validAccounts.append(createacct(outputFilepath, validAccounts,
+                                                    validAccountsPath, loginStatus))
                 elif userInput == "deleteacct":
                     accounts = deleteacct(
                         outputFilepath, validAccounts, loginStatus)
@@ -218,30 +221,3 @@ while(True):
 
     if(userInput == 'exit'):
         break
-
-# def deleteacct(transaction, listOfAccounts):
-
-# file = open(outputFile, "w+")
-# delimited = transaction.split(" ")
-
-# acctNum = delimited[1]
-#  amount = delimited[2]
-#   name = delimited[3]
-
-#    # Validation cases
-#    if login == 0:              # If not logged in, error
-#         print("You are not logged in.")
-
-#     elif login == 1:
-#         print("Not priviledged for this command")
-#     elif len(acctNum) != 7 or not acctNum.isdigit():    # If accout number not proper, error
-#         print("Invalid account number.")
-
-#     elif acctNum not in listOfAccounts:    # Make sure account exists
-#         print("Account does not exist.")
-
-#     else
-#     print("DEL "+acctNum+" 000"+" 0000000 "+name)
-#     listOfAccounts.remove(acctNum)
-
-#     return listOfAccounts

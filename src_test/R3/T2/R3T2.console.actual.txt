@@ -14,8 +14,6 @@ Enter mode: machine
 Login Successful
 Enter action: createacct
 You do not have the priviledge for this command.
-Enter action: 2222222
-Enter action: NAMEACC
 Enter action: logout
 Type 'exit' to leave
 > 
