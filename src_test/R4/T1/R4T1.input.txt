@@ -1,0 +1,11 @@
+login
+agent
+deleteacct
+1
+deleteacct
+1234567
+a
+deleteacct
+1234567
+abc
+logout
