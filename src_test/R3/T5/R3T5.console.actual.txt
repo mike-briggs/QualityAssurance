@@ -7,10 +7,6 @@ Enter action: deposit
 Enter account number: 1234567
 Enter amount: 10000
 Funds successfully deposited.
-Enter action: createacct
-Enter account number: 7654321
-Account number already in use.
-Enter action: PROPERNAME
 Enter action: deposit
 Enter account number: 7654321
 Enter amount: 10000
