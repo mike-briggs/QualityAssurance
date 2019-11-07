@@ -4,9 +4,8 @@ import json
 
 
 def logout(line, outputFile):
-    with open(outputFile, 'w') as wf:
-        wf.write('EOS 0000000 000 0000000 ***')
-
+    with open(outputFile, 'a') as wf:
+        wf.write('\nEOS 0000000 000 0000000 ***')
     return 0
 
 # 0     - success/already logged in
@@ -42,14 +41,9 @@ def deposit(line, outputFile, validAccounts):
         amount = input("Enter amount: ")
         print(amount)
 
-        # TODO NEED TO VALIDATE THE AMOUNT
-
         if(amount.isdigit()):
-            transactionString = 'DEP ' + \
-                str(acctNum)+' '+str(amount)+' 0000000 ***'
-
-            with open(outputFile, 'w') as wf:
-                wf.write(str(transactionString))
+            with open(outputFile, 'a') as wf:
+                wf.write('\nDEP '+acctNum+' '+amount+' 0000000 ***')
             print("Funds successfully deposited")
             return True
         else:
@@ -65,7 +59,7 @@ def deposit(line, outputFile, validAccounts):
         #     print("Over deposit limit.")
         # else:
 
-        # main
+# main
 
 
 validAccountsPath = sys.argv[1]  # file path for "valid_accounts.txt"
@@ -102,35 +96,6 @@ if(userInput == 'login'):
             #     accounts = deleteacct(current, accounts, loginState, outputFile)
 elif(userInput == 'logout'):
     print("You are not logged in")
-
-# def readValidAccounts(filename):
-
-#     masterAccountsList = []  # initialize master list of accounts
-#     # accountsFile = open(filename, "r")      # read the file
-#     # get number of lines in the file
-#     numLinesInFile = sum(1 for line in open(filename))
-
-#     # for every line in the file
-#     for i in numLinesInFile:
-#         line = accountsFile.readline()  # read line
-#         masterAccountsList.append(line)  # append new account to master list
-
-#     accountsFile.close()
-
-#     return masterAccountsList
-
-
-# def readInTransactions(filename):
-
-#     masterTransactionsList = []  # initialize master list of transactions
-#     transactionsFile = open(filename, "r")  # read the file
-#     numLinesInFile = sum(1 for line in open(filename))
-
-#     for i in numLinesInFile:
-#         line = transactionsFile.readline()
-#         masterTransactionsList.append(line)
-
-#     return masterTransactionsList
 
 
 # def withdraw(transaction, listOfAccounts, login, outputFile):
