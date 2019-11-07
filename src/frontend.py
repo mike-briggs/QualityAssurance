@@ -220,30 +220,3 @@ while(True):
 
     if(userInput == 'exit'):
         break
-
-# def deleteacct(transaction, listOfAccounts):
-
-# file = open(outputFile, "w+")
-# delimited = transaction.split(" ")
-
-# acctNum = delimited[1]
-#  amount = delimited[2]
-#   name = delimited[3]
-
-#    # Validation cases
-#    if login == 0:              # If not logged in, error
-#         print("You are not logged in.")
-
-#     elif login == 1:
-#         print("Not priviledged for this command")
-#     elif len(acctNum) != 7 or not acctNum.isdigit():    # If accout number not proper, error
-#         print("Invalid account number.")
-
-#     elif acctNum not in listOfAccounts:    # Make sure account exists
-#         print("Account does not exist.")
-
-#     else
-#     print("DEL "+acctNum+" 000"+" 0000000 "+name)
-#     listOfAccounts.remove(acctNum)
-
-#     return listOfAccounts
