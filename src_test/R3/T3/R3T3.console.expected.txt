@@ -1,2 +1,39 @@
-Welcome!
+Welcome to Quinterac
+Type 'exit' to leave
+> login
+Enter mode: agent
+Login Successful
+Enter action: createacct
+Enter account number: 1234567
+Account number already in use.
+Enter action: AccountName
+Enter action: createacct
+Enter account number: 1234567
+Account number already in use.
+Enter action: AccountNM
+Enter action: createacct
+Enter account number: 12345678
+Enter account name: AccountNAME
+Account created successfully.
+Enter action: createacct
+Enter account number: 123456 ACCNAME
+Enter account name: createacct
+Account created successfully.
+Enter action: 0123456
+Enter action: NAME
+Enter action: createacct
+Enter account number: A012345
+Enter account name: ACCNM
+Account created successfully.
+Enter action: logout
+Type 'exit' to leave
+> login
+Enter mode: agent
+Login Successful
+Enter action: deleteacct
+Enter account number: 12334567
+Invalid account number.
+Enter action: AccountName
+Enter action: logout
+Type 'exit' to leave
 > 
