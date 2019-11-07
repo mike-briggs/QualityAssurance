@@ -3,15 +3,6 @@ Type 'exit' to leave
 > login
 Enter mode: agent
 Login Successful
-Enter action: createacct
-Enter account number: 1234567
-Account number already in use.
-Enter action: INITACC
-Enter action: logout
-Type 'exit' to leave
-> login
-Enter mode: agent
-Login Successful
 Enter action: deposit
 Enter account number: 1234567
 Enter amount: 10000
@@ -33,21 +24,6 @@ Enter (from) account: 1234567
 Enter (to) account: 7654321
 Enter amount: 1000
 Funds successfully transfered.
-Enter action: logout
-Type 'exit' to leave
-> agent
-Type 'exit' to leave
-> login
-Enter mode: agent
-Login Successful
-Enter action: deleteacct
-Enter account number: 1234567
-Enter account name: INITACC
-Account deleted successfully
-Enter action: deleteacct
-Enter account number: 1234567
-Enter account name: PROPERNAME
-Account deleted successfully
 Enter action: logout
 Type 'exit' to leave
 > 

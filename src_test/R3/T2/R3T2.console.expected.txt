@@ -1,2 +1,19 @@
-Welcome!
+Welcome to Quinterac
+Type 'exit' to leave
+> login
+Enter mode: agent
+Login Successful
+Enter action: createacct
+Enter account number: 1111111
+Enter account name: NAME
+Account created successfully.
+Enter action: logout
+Type 'exit' to leave
+> login
+Enter mode: machine
+Login Successful
+Enter action: createacct
+You do not have the priviledge for this command.
+Enter action: logout
+Type 'exit' to leave
 > 

@@ -12,8 +12,12 @@ Enter account number: 2222222
 Enter account name: 
 Invalid account name.
 Enter action: createacct
-Enter account number: othername
+Enter account number: 
 Invalid account number.
+Enter action: othername
 Enter action: createacct
 Enter account number: 
 Invalid account number.
+Enter action: logout
+Type 'exit' to leave
+> 
