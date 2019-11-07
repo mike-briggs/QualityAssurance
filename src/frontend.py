@@ -182,34 +182,39 @@ file = open(validAccountsPath, 'r')
 validAccounts = file.read().split(',')
 
 print("Welcome to Quinterac")
-userInput = input('> ')
-print(userInput)
-with open(outputFilepath, 'w') as wf:
-    wf.write('')
+while(True):
 
-if(userInput == 'login'):
-    # set login status with function
-    loginStatus = login(outputFilepath)
-    if(loginStatus > 0):                                        # if logged in
-        while(loginStatus > 0):                                 # while session is active
-            userInput = input("Enter action: ")
-            print(userInput)
-            if userInput == "logout":
-                loginStatus = logout(outputFilepath)
-            elif userInput == "deposit":
-                deposit(outputFilepath, validAccounts)
-            elif userInput == "withdraw":
-                withdraw(outputFilepath, validAccounts)
-            elif userInput == "transfer":
-                transfer(outputFilepath, validAccounts)
-            elif userInput == "createacct":
-                createacct(outputFilepath, validAccounts,
-                           validAccountsPath, loginStatus)
-            elif userInput == "deleteacct":
-                accounts = deleteacct(
-                    outputFilepath, validAccounts, loginStatus)
-elif(userInput == 'logout'):
-    print("You are not logged in")
+    userInput = input('Type \'exit\' to leave\n> ')
+    print(userInput)
+    with open(outputFilepath, 'w') as wf:
+        wf.write('')
+
+    if(userInput == 'login'):
+        # set login status with function
+        loginStatus = login(outputFilepath)
+        if(loginStatus > 0):                                        # if logged in
+            while(loginStatus > 0):                                 # while session is active
+                userInput = input("Enter action: ")
+                print(userInput)
+                if userInput == "logout":
+                    loginStatus = logout(outputFilepath)
+                elif userInput == "deposit":
+                    deposit(outputFilepath, validAccounts)
+                elif userInput == "withdraw":
+                    withdraw(outputFilepath, validAccounts)
+                elif userInput == "transfer":
+                    transfer(outputFilepath, validAccounts)
+                elif userInput == "createacct":
+                    createacct(outputFilepath, validAccounts,
+                               validAccountsPath, loginStatus)
+                elif userInput == "deleteacct":
+                    accounts = deleteacct(
+                        outputFilepath, validAccounts, loginStatus)
+    elif(userInput == 'logout'):
+        print("You are not logged in")
+
+    if(userInput == 'exit'):
+        break
 
 # def deleteacct(transaction, listOfAccounts):
 
