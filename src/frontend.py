@@ -56,6 +56,27 @@ def deposit(outputFile, validAccounts):
         #     print("Over deposit limit.")
         # else:
 
+def withdraw(listOfAccounts, outputFile, validAccounts):
+
+    acctNum = input("Enter account number: ")  # account num
+    print(acctNum)
+
+    if (len(acctNum) != 7 or not acctNum.isdigit()) or acctNum not in validAccounts:
+        print("Invalid account number.")
+        return False
+    else:
+        amount = input("Enter amount: ")
+        print(amount)
+
+        if(amount.isdigit()):
+            with open(outputFile, 'a') as wf:
+                wf.write('\nWDR '+acctNum+' '+amount+' 0000000 ***')
+            print("Funds successfully withdrawn")
+            return True
+        else:
+            print("Invalid amount.")
+            return False
+        
 
 def transfer(outputFile, validAccounts):
     fromAccount = input("Enter (from) account: ")
