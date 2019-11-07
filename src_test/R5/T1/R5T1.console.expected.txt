@@ -1,0 +1,19 @@
+Welcome to Quinterac
+Type 'exit' to leave
+> login
+Enter mode: agent
+Login Successful
+Enter action: deposit
+Enter account number: 1234567
+Enter amount: 100
+Funds successfully deposited.
+Enter action: deposit
+Enter account number: 1234567
+Enter amount: 
+Invalid amount.
+Enter action: deposit
+Enter account number: 
+Invalid account number.
+Enter action: logout
+Type 'exit' to leave
+> 

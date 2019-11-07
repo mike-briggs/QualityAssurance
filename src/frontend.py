@@ -28,7 +28,7 @@ def login(outputFile):
         return -1
 
 
-def deposit(outputFile, validAccounts):
+def deposit(outputFile, validAccounts, loginState):
 
     # Validation cases
     acctNum = input("Enter account number: ")  # account num
@@ -42,19 +42,20 @@ def deposit(outputFile, validAccounts):
         print(amount)
 
         if(amount.isdigit()):
-            with open(outputFile, 'a') as wf:
-                wf.write('\nDEP '+acctNum+' '+amount+' 0000000 ***')
-            print("Funds successfully deposited.")
-            return True
+            if(loginState == 2 and int(amount) > 2000):
+                print("Over machine deposit limit.")
+                return False
+            elif(loginState == 1 and int(amount) > 99999999):
+                print("Over agent deposit limit.")
+                return False
+            else:
+                with open(outputFile, 'a') as wf:
+                    wf.write('\nDEP '+acctNum+' '+amount+' 0000000 ***')
+                print("Funds successfully deposited.")
+                return True
         else:
             print("Invalid amount.")
             return False
-
-        # if not amount.isdigit():
-        #     print("Amount is not a valid amount.")
-        # elif (login == 1 and amount > 1000) or (login == 2 and amount > 999999.99):
-        #     print("Over deposit limit.")
-        # else:
 
 
 def withdraw(outputFile, validAccounts):
@@ -204,7 +205,7 @@ while(True):
                 if userInput == "logout":
                     loginStatus = logout(outputFilepath)
                 elif userInput == "deposit":
-                    deposit(outputFilepath, validAccounts)
+                    deposit(outputFilepath, validAccounts, loginStatus)
                 elif userInput == "withdraw":
                     withdraw(outputFilepath, validAccounts)
                 elif userInput == "transfer":

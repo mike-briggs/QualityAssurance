@@ -1,0 +1,11 @@
+login
+agent
+deposit
+1234567
+100
+deposit
+1234567
+
+deposit
+
+logout
