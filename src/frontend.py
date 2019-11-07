@@ -184,6 +184,8 @@ def deleteacct(outputFile, validAccounts, loginState):
                 print("Account deleted successfully")
                 with open(outputFile, 'a') as wf:
                     wf.write('\nDEL '+acctNum+' 000 '+'0000000 '+acctName)
+                    i = validAccounts.index(acctNum);
+                    validAccounts.remove(i);
                 return True
 
             else:

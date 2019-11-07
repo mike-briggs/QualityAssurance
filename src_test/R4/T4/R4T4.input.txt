@@ -6,7 +6,7 @@ accountname
 deposit
 1234567
 1234
-withdrawal
+withdraw
 1234567
 1234
 transfer

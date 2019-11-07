@@ -27,10 +27,6 @@ Enter action: deleteacct
 Enter account number: 1234567
 Enter account name: accountname
 Account deleted successfully
-Enter action: deleteacct
-Enter account number: 1234567
-Enter account name: accountname
-Account deleted successfully
 Enter action: logout
 Type 'exit' to leave
 > 

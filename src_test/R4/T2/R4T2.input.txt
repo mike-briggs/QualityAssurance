@@ -18,7 +18,4 @@ accountname
 deleteacct
 1234567
 accountname
-deleteacct
-1234567
-accountname
 logout
