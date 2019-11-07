@@ -19,10 +19,9 @@ def login(outputFile):
     if(arg2 == 'machine' or arg2 == 'agent'):
         print("Login Successful")
         if(arg2 == 'machine'):
-            return 1
-        else:
             return 2
-        return 0
+        else:
+            return 1
     else:
         print("Invalid type")
         return -1
@@ -56,6 +55,7 @@ def deposit(outputFile, validAccounts):
         #     print("Over deposit limit.")
         # else:
 
+
 def withdraw(listOfAccounts, outputFile, validAccounts):
 
     acctNum = input("Enter account number: ")  # account num
@@ -76,7 +76,7 @@ def withdraw(listOfAccounts, outputFile, validAccounts):
         else:
             print("Invalid amount.")
             return False
-        
+
 
 def transfer(outputFile, validAccounts):
     fromAccount = input("Enter (from) account: ")
@@ -127,6 +127,7 @@ def createacct(outputFile, validAccounts, validAccountsPath, loginState):
             print("Account number already in use.")
             return False
         else:
+            print("first digit: "+int(str(acctNum)[:1]) == 0)
             if(acctNum != 7 or not acctNum.isdigit() or int(str(acctNum)[:1]) == 0):
                 print("Invalid account number.")
             else:
