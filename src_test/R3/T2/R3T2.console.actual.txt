@@ -1,0 +1,30 @@
+Welcome to Quinterac
+Type 'exit' to leave
+> login
+Enter mode: agent
+Login Successful
+Enter action: createacct
+Enter account number: 1234567
+Account number already in use.
+Enter action: NAME
+Enter action: logout
+Type 'exit' to leave
+> login
+Enter mode: machine
+Login Successful
+Enter action: createacct
+You do not have the priviledge for this command.
+Enter action: 7654321
+Enter action: NAMEACC
+Enter action: logout
+Type 'exit' to leave
+> login
+Enter mode: agent
+Login Successful
+Enter action: deleteacct
+Enter account number: 1234567
+Enter account name: NAME
+Account deleted successfully
+Enter action: logout
+Type 'exit' to leave
+> 

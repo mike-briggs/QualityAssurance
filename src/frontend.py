@@ -132,7 +132,7 @@ def createacct(outputFile, validAccounts, validAccountsPath, loginState):
             else:
                 acctName = input("Enter account name: ")
                 print(acctName)
-
+                # TODO Account name not verified correctly
                 if((len(acctName) >= 3 and len(acctName) <= 30) or not acctName.isalnum() or acctName.startswith(' ') or acctName.endswith(' ')):
                     print("Account created successfully.")
                     with open(outputFile, 'a') as wf:

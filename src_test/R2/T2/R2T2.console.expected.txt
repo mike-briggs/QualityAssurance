@@ -1,8 +1,12 @@
 Welcome to Quinterac
+Type 'exit' to leave
 > login
 Enter mode: machine
+Login Successful
 Enter action: deposit
 Enter account number: 1234567
 Enter amount: 1234
 Funds successfully deposited.
-logout
+Enter action: logout
+Type 'exit' to leave
+> 

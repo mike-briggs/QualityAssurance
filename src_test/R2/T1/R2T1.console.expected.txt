@@ -1,9 +1,11 @@
 Welcome to Quinterac
+Type 'exit' to leave
 > logout
 You are not logged in
+Type 'exit' to leave
 > login
 Enter mode: machine
-machine
-Login successful.
+Login Successful
 Enter action: logout
-logout
+Type 'exit' to leave
+> 
