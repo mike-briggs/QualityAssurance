@@ -1,11 +1,4 @@
-NEW 1234567 000 0000000 accountname
-EOS 0000000 000 ***
 
-ERROR Invalid account number
-ERROR Invalid account number
-ERROR Invalid account number
-ERROR Invalid account number
-ERROR Account number does not exist
+DEL 7654321 000 0000000 accountname
 DEL 1234567 000 0000000 accountname
-ERROR Account number does not exist
-EOS 0000000 000 ***
+EOS 0000000 000 0000000 ***
