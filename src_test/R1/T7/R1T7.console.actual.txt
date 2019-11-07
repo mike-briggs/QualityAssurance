@@ -1,0 +1,10 @@
+Welcome to Quinterac
+> login
+Enter mode: agent
+Login Successful
+Enter action: transfer
+Enter (from) account: 1234567
+Enter (to) account: 7654321
+Enter amount: 1234
+Funds successfully transfered.
+Enter action: logout
