@@ -127,15 +127,14 @@ def createacct(outputFile, validAccounts, validAccountsPath, loginState):
             print("Account number already in use.")
             return False
         else:
-            print("first digit: "+int(str(acctNum)[:1]) == 0)
-            if(acctNum != 7 or not acctNum.isdigit() or int(str(acctNum)[:1]) == 0):
+            if(acctNum != 7 or not acctNum.isdigit() or str(acctNum)[:1]) == '0':
                 print("Invalid account number.")
             else:
                 acctName = input("Enter account name: ")
                 print(acctName)
 
                 if((len(acctName) >= 3 and len(acctName) <= 30) or not acctName.isalnum() or acctName.startswith(' ') or acctName.endswith(' ')):
-                    print("Account created successfully")
+                    print("Account created successfully.")
                     with open(outputFile, 'a') as wf:
                         wf.write('\nNEW '+acctNum+' 000 '+'0000000 '+acctName)
                     return True
