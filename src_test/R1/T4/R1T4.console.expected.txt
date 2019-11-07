@@ -1,4 +1,7 @@
 Welcome to Quinterac
+Type 'exit' to leave
 > login
 Enter mode: not_a_type
 Invalid type
+Type 'exit' to leave
+> 

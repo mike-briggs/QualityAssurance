@@ -1,4 +1,5 @@
 Welcome to Quinterac
+Type 'exit' to leave
 > login
 Enter mode: agent
 Login Successful
@@ -7,3 +8,5 @@ Enter account number: 1111111
 Enter account name: valid name
 Account created successfully.
 Enter action: logout
+Type 'exit' to leave
+> 

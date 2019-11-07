@@ -1,4 +1,5 @@
 Welcome to Quinterac
+Type 'exit' to leave
 > login
 Enter mode: agent
 Login Successful
@@ -7,3 +8,5 @@ Enter account number: 1234567
 Enter amount: 1234
 Funds successfully withdrawn
 Enter action: logout
+Type 'exit' to leave
+> 

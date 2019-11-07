@@ -1,3 +1,11 @@
 Welcome to Quinterac
+Type 'exit' to leave
 > logout
 You are not logged in
+Type 'exit' to leave
+> login
+Enter mode: machine
+Login Successful
+Enter action: logout
+Type 'exit' to leave
+> 

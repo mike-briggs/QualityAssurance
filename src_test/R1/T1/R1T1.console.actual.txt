@@ -1,3 +1,4 @@
 Welcome to Quinterac
+Type 'exit' to leave
 > login
 Enter mode: 
