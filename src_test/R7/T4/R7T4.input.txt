@@ -1,0 +1,17 @@
+login
+agent
+deposit
+1234567
+20000
+logout
+login
+machine
+transfer
+1234567
+7654321
+5001
+transfer
+1234567
+7654321
+5001
+logout

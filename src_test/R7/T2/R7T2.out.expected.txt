@@ -1,0 +1,21 @@
+NEW 1234567 000 0000000 NAME
+NEW 7654321 000 0000000 EMAN
+EOS 0000000 000 0000000 ***
+
+DEP 1234567 1000 0000000 NAME
+XFR 1234567 100 7654321 ***
+ERROR Cannot transfer to same account
+ERROR Invalid from account number
+ERROR Invalid from account number
+ERROR Invalid from account number
+ERROR Invalid from account number
+ERROR Invalid from account number
+
+ERROR Invalid to account number
+ERROR Invalid to account number
+ERROR Invalid to account number
+ERROR Invalid to account number
+ERROR Invalid to account number
+DEL 1234567 000 0000000 NAME
+DEL 7654321 000 0000000 EMAN
+EOS 0000000 000 0000000 ***
