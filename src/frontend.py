@@ -95,6 +95,33 @@ def transfer(outputFile, validAccounts):
 
     # else
 
+
+def createacct(outputFile, validAccounts, validAccountsPath, loginState):
+    # NEW to amount from name
+    if(loginState == 1):
+        acctNum = input("Enter account number: ")
+        print(acctNum)
+
+        if(acctNum in validAccounts):
+            print("Account number already in use.")
+            return False
+        else:
+            if(acctNum != 7 or not acctNum.isdigit() or int(str(acctNum)[:1]) == 0):
+                print("Invalid account number.")
+            else:
+                acctName = input("Enter account name: ")
+                print(acctName)
+
+                if((len(acctName) >= 3 and len(acctName) <= 30) or not acctName.isalnum() or acctName.startswith(' ') or acctName.endswith(' ')):
+                    print("Account created successfully")
+                    with open(outputFile, 'a') as wf:
+                        wf.write('\nNEW '+acctNum+' 000 '+'0000000 '+acctName)
+                    return True
+
+    else:
+        print("You do not have the priviledge for this command.")
+        return False
+
 # main
 
 
@@ -126,8 +153,9 @@ if(userInput == 'login'):
             #     withdraw(current, accounts, loginState, outputFile)
             elif userInput == "transfer":
                 transfer(outputFilepath, validAccounts)
-            # elif userInput == "createacct":
-            #     accounts = createacct(current, accounts, loginState, outputFile)
+            elif userInput == "createacct":
+                createacct(outputFilepath, validAccounts,
+                           validAccountsPath, loginStatus)
             # elif userInput == "deleteacct":
             #     accounts = deleteacct(current, accounts, loginState, outputFile)
 elif(userInput == 'logout'):
@@ -164,31 +192,6 @@ elif(userInput == 'logout'):
 #     print("WDR "+acctNum+" "+amount+" 0000000 name")
 
 #     return True
-
-
-# def createacct(transaction, listOfAccounts):
-#     # NEW to amount from name
-#     file = open(outputFile, "w+")
-#     delimited = transaction.split(" ")
-
-#     acctNum = delimited[1]
-#     amount = delimited[2]
-#     name = delimited[3]
-
-#     # Validation cases
-#     if login == 0:              # If not logged in, error
-#         print("You are not logged in.")
-
-#     elif login == 1:
-#         print("Not priviledged for this command")
-#     elif len(acctNum) != 7 or not acctNum.isdigit():    # If accout number not proper, error
-#         print("Invalid account number.")
-
-#     else
-#     print("NEW "+acctNum+" 000 "+"0000000 "+name)
-#     listOfAccounts.append(acctNum)
-
-#     return listOfAccounts
 
 
 # def deleteacct(transaction, listOfAccounts):
