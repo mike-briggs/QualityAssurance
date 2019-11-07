@@ -1,2 +1,19 @@
-Welcome!
-> 
+Welcome to Quinterac
+Type 'exit' to leave
+> login
+Enter mode: agent
+Login Successful
+Enter action: createacct
+Enter account number: 1111111
+Enter account name: NAME
+Account created successfully.
+Enter action: createacct
+Enter account number: 2222222
+Enter account name: 
+Invalid account name.
+Enter action: createacct
+Enter account number: othername
+Invalid account number.
+Enter action: createacct
+Enter account number: 
+Invalid account number.

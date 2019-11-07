@@ -138,6 +138,9 @@ def createacct(outputFile, validAccounts, validAccountsPath, loginState):
                     with open(outputFile, 'a') as wf:
                         wf.write('\nNEW '+acctNum+' 000 '+'0000000 '+acctName)
                     return True
+                else:
+                    print("Invalid account name.")
+                    return False
 
     else:
         print("You do not have the priviledge for this command.")

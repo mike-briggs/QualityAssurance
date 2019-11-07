@@ -4,25 +4,19 @@ Type 'exit' to leave
 Enter mode: agent
 Login Successful
 Enter action: createacct
-Enter account number: 1234567
-Account number already in use.
-Enter action: NAME
-Enter action: createacct
-Enter account number: 7654321
-Account number already in use.
-Enter action: createacct
-Enter account number: othername
-Enter account name: createacct
-Account created successfully.
-Enter action: logout
-Type 'exit' to leave
-> login
-Enter mode: agent
-Login Successful
-Enter action: deleteacct
-Enter account number: 1234567
+Enter account number: 1111111
 Enter account name: NAME
-Account deleted successfully
-Enter action: logout
-Type 'exit' to leave
-> 
+Account created successfully.
+Enter action: createacct
+Enter account number: 2222222
+Enter account name: 
+Account created successfully.
+Enter action: createacct
+Enter account number: 
+Enter account name: othername
+Account created successfully.
+Enter action: createacct
+Enter account number: 
+Enter account name: logout
+Account created successfully.
+Enter action: 

@@ -10,9 +10,11 @@ Enter action: NAME
 Enter action: createacct
 Enter account number: 1234568
 Enter account name: accountnameiswaytoolonggggggggg
+Invalid account name.
 Enter action: createacct
 Enter account number: 1234569
 Enter account name: ac
+Invalid account name.
 Enter action: createacct
 Enter account number: 1234561
 Enter account name: accountnmm
