@@ -11,9 +11,10 @@ Enter action: deposit
 Enter account number: 1234567
 Enter amount: 1234
 Funds successfully deposited.
-Enter action: withdrawal
-Enter action: 1234567
-Enter action: 1234
+Enter action: withdraw
+Enter account number: 1234567
+Enter amount: 1234
+Funds successfully withdrawn
 Enter action: transfer
 Enter (from) account: 1234567
 Enter (to) account: 1234
