@@ -25,5 +25,5 @@ transfer
 transfer
 1234567
 7654321
-1000000
+1000000000
 logout

@@ -5,10 +5,11 @@ import re
 
 
 class Account:
-    def __init__(self, number, dep, wdr):
+    def __init__(self, number, dep, wdr, bal):
         self.number = number
         self.dep = dep
         self.wdr = wdr
+        self.bal = bal
 
 
 def logout(outputFile):
@@ -124,7 +125,7 @@ def withdraw(outputFile, validAccounts, accountCaps, loginState):
             return False
 
 
-def transfer(outputFile, validAccounts, loginState):
+def transfer(outputFile, validAccounts, loginState, accountDetails):
     fromAccount = input("Enter (from) account: ")
     print(fromAccount)
 
@@ -143,7 +144,7 @@ def transfer(outputFile, validAccounts, loginState):
         else:
             amount = input("Enter amount: ")
             print(amount)
-
+            # TODO validate money in account using accountDetails
             if (amount.isdigit()):                          # If amount not proper, error
                 if(int(amount) > 10000 and loginState == 2):
                     print("Over machine transfer limit.")
@@ -235,7 +236,7 @@ validAccounts = file.read().split(',')
 
 validAccountsObj = []
 for i in range(len(validAccounts)):
-    validAccountsObj.append(Account(validAccounts[i], 0, 0))
+    validAccountsObj.append(Account(validAccounts[i], 0, 0, 0))
 
 with open(outputFilepath, 'w') as wf:
     wf.write('')
@@ -264,6 +265,8 @@ while(True):
                             if(validAccountsObj[i].number == amountDeposited[0]):
                                 validAccountsObj[i].dep += int(
                                     amountDeposited[1])
+                                validAccountsObj[i].bal += int(
+                                    amountDeposited[1])
                 elif userInput == "withdraw":
                     amountWithdrawn = withdraw(
                         outputFilepath, validAccounts, validAccountsObj, loginStatus)
@@ -274,8 +277,11 @@ while(True):
                             if(validAccountsObj[i].number == amountWithdrawn[0]):
                                 validAccountsObj[i].wdr += int(
                                     amountWithdrawn[1])
+                                validAccountsObj[i].bal -= int(
+                                    amountDeposited[1])
                 elif userInput == "transfer":
-                    transfer(outputFilepath, validAccounts, loginStatus)
+                    transfer(outputFilepath, validAccounts,
+                             loginStatus, validAccountsObj)
                 elif userInput == "createacct":
                     validAccounts.append(createacct(outputFilepath, validAccounts,
                                                     validAccountsPath, loginStatus))

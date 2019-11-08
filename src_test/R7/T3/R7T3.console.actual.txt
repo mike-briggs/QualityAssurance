@@ -35,8 +35,8 @@ Funds successfully transfered.
 Enter action: transfer
 Enter (from) account: 1234567
 Enter (to) account: 7654321
-Enter amount: 1000000
-Funds successfully transfered.
+Enter amount: 1000000000
+Over agent transfer limit.
 Enter action: logout
 Type 'exit' to leave
 > 
