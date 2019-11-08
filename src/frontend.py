@@ -65,8 +65,9 @@ def deposit(outputFile, validAccounts, loginState, accountDepositArray):
                     if(accountDepositArray[i].number == acctNum):
                         currentlyDeposited = accountDepositArray[i].dep
                         break
-                if(currentlyDeposited > 5000):          # check if we can still deposit to this account
-                    print("Over daily depoist limit.")
+                # check if we can still deposit to this account
+                if(currentlyDeposited + int(amount) > 5000):
+                    print("Over daily deposit limit.")
                     return False
                 else:
                     # successful deposit
@@ -169,6 +170,9 @@ def createacct(outputFile, validAccounts, validAccountsPath, loginState):
         print("You do not have the priviledge for this command.")
         return False
 
+# return the account number of the account to delete on success
+# otherwise returns false
+
 
 def deleteacct(outputFile, validAccounts, loginState):
 
@@ -184,9 +188,7 @@ def deleteacct(outputFile, validAccounts, loginState):
                 print("Account deleted successfully")
                 with open(outputFile, 'a') as wf:
                     wf.write('\nDEL '+acctNum+' 000 '+'0000000 '+acctName)
-                    i = validAccounts.index(acctNum);
-                    validAccounts.remove(i);
-                return True
+                return acctNum
 
             else:
                 print("Invalid account name")
@@ -253,6 +255,14 @@ while(True):
                 elif userInput == "deleteacct":
                     accounts = deleteacct(
                         outputFilepath, validAccounts, loginStatus)
+
+                    # remove the deleted account from valid accounts
+                    if(accounts):
+                        for i in range(len(validAccounts)):
+                            if validAccounts[i] == accounts:
+                                del validAccounts[i]
+                                break
+
     elif(userInput == 'logout'):
         print("You are not logged in")
 

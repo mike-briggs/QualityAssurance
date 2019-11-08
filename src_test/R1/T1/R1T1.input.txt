@@ -1,1 +1,10 @@
 login
+
+login
+machine
+logout
+login
+agent
+logout
+login
+not_a_type

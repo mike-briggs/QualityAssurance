@@ -1,7 +1,19 @@
 Welcome to Quinterac
 Type 'exit' to leave
 > login
-Enter mode: not_a_type
-Invalid type
+Enter mode: machine
+Login Successful
+Enter action: login
+Enter action: logout
+Type 'exit' to leave
+> login
+Enter mode: agent
+Login successful
+Enter action: logout
+Type 'exit' to leave
+> login
+Enter mode: agent
+Login successful
+Enter action: logout
 Type 'exit' to leave
 > 

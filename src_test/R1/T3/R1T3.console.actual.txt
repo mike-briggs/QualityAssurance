@@ -1,6 +1,58 @@
 Welcome to Quinterac
 Type 'exit' to leave
+> login machine
+Type 'exit' to leave
+> deposit
+Type 'exit' to leave
+> 1234567
+Type 'exit' to leave
+> 1234
+Type 'exit' to leave
+> withdrawal
+Type 'exit' to leave
+> 1234567
+Type 'exit' to leave
+> 1000
+Type 'exit' to leave
+> transfer
+Type 'exit' to leave
+> 1234567
+Type 'exit' to leave
+> 1234
+Type 'exit' to leave
+> 7654321
+Type 'exit' to leave
+> createacct
+Type 'exit' to leave
+> deleteacct
+Type 'exit' to leave
+> logout
+You are not logged in
+Type 'exit' to leave
 > login
 Enter mode: agent
 Login Successful
-Enter action: 
+Enter action: deposit
+Enter account number: 1234567
+Enter amount: 1234
+Funds successfully deposited.
+Enter action: withdraw
+Enter account number: 1234567
+Enter amount: 1234
+Funds successfully withdrawn
+Enter action: transfer
+Enter (from) account: 1234567
+Enter (to) account: 1234
+Invalid account number.
+Enter action: 7654321
+Enter action: createacct
+Enter account number: 1111111
+Enter account name: accountname
+Account created successfully.
+Enter action: deleteacct
+Enter account number: 1111111
+Enter account name: accountname
+Account deleted successfully
+Enter action: logout
+Type 'exit' to leave
+> 

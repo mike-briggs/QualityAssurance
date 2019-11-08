@@ -18,7 +18,7 @@ Funds successfully deposited.
 Enter action: deposit
 Enter account number: 1234567
 Enter amount: 501
-Funds successfully deposited.
+Over daily deposit limit.
 Enter action: logout
 Type 'exit' to leave
 > 

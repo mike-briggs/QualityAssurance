@@ -9,21 +9,21 @@ Enter account name: accountname
 Account deleted successfully
 Enter action: deposit
 Enter account number: 1234567
-Enter amount: 1234
-Funds successfully deposited.
+Invalid account number.
+Enter action: 1234
 Enter action: withdraw
 Enter account number: 1234567
-Enter amount: 1234
-Funds successfully withdrawn
+Invalid account number.
+Enter action: 1234
 Enter action: transfer
 Enter (from) account: 1234567
-Enter (to) account: 1234
 Invalid account number.
+Enter action: 1234
 Enter action: 7654321
 Enter action: deleteacct
 Enter account number: 1234567
-Enter account name: accountname
-Account deleted successfully
+Invalid account number.
+Enter action: accountname
 Enter action: logout
 Type 'exit' to leave
 > 

@@ -2,10 +2,10 @@ login
 agent
 deposit
 1234567
-10000
+5000
 deposit
 7654321
-10000
+5000
 withdraw
 7654321
 5000

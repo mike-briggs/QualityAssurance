@@ -1,2 +1,11 @@
 login
-not_a_type
+machine
+login
+
+logout
+login
+agent
+logout
+login
+agent
+logout
