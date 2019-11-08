@@ -5,8 +5,8 @@ Enter mode: agent
 Login Successful
 Enter action: deposit
 Enter account number: 1234567
-Enter amount: 20000
-Over daily deposit limit.
+Enter amount: 5000
+Funds successfully deposited.
 Enter action: logout
 Type 'exit' to leave
 > login
@@ -21,7 +21,7 @@ Enter action: transfer
 Enter (from) account: 1234567
 Enter (to) account: 7654321
 Enter amount: 5001
-Funds successfully transfered.
+Over daily transfer limit.
 Enter action: logout
 Type 'exit' to leave
 > 

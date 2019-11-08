@@ -5,11 +5,12 @@ import re
 
 
 class Account:
-    def __init__(self, number, dep, wdr, bal):
+    def __init__(self, number, dep, wdr, bal, xfr):
         self.number = number
         self.dep = dep
         self.wdr = wdr
         self.bal = bal
+        self.xfr = xfr
 
 
 def logout(outputFile):
@@ -144,6 +145,12 @@ def transfer(outputFile, validAccounts, loginState, accountDetails):
         else:
             amount = input("Enter amount: ")
             print(amount)
+
+            transferredThisSession = 0
+            for i in range(len(accountDetails)):
+                if(accountDetails[i].number == fromAccount):
+                    transferredThisSession = accountDetails[i].xfr
+
             # TODO validate money in account using accountDetails
             if (amount.isdigit()):                          # If amount not proper, error
                 if(int(amount) > 10000 and loginState == 2):
@@ -151,11 +158,15 @@ def transfer(outputFile, validAccounts, loginState, accountDetails):
                 elif(int(amount) > 99999999 and loginState == 1):
                     print("Over agent transfer limit.")
                 else:
-                    print("Funds successfully transfered.")
-                    with open(outputFile, 'a') as wf:
-                        wf.write('\nXFR '+toAccount+' ' +
-                                 amount+' '+fromAccount+' ***')
-                    return True
+                    if(int(amount) + transferredThisSession > 10000):
+                        print("Over daily transfer limit.")
+                        return False
+                    else:
+                        print("Funds successfully transfered.")
+                        with open(outputFile, 'a') as wf:
+                            wf.write('\nXFR '+toAccount+' ' +
+                                     amount+' '+fromAccount+' ***')
+                        return [fromAccount, amount]
             else:
                 print("Invalid amount.")
                 return False
@@ -236,7 +247,7 @@ validAccounts = file.read().split(',')
 
 validAccountsObj = []
 for i in range(len(validAccounts)):
-    validAccountsObj.append(Account(validAccounts[i], 0, 0, 0))
+    validAccountsObj.append(Account(validAccounts[i], 0, 0, 0, 0))
 
 with open(outputFilepath, 'w') as wf:
     wf.write('')
@@ -280,8 +291,13 @@ while(True):
                                 validAccountsObj[i].bal -= int(
                                     amountDeposited[1])
                 elif userInput == "transfer":
-                    transfer(outputFilepath, validAccounts,
-                             loginStatus, validAccountsObj)
+                    amountTransfered = transfer(outputFilepath, validAccounts,
+                                                loginStatus, validAccountsObj)
+                    if(amountTransfered):
+                        for i in range(len(validAccountsObj)):
+                            if(validAccountsObj[i].number == amountTransfered[0]):
+                                validAccountsObj[i].xfr += int(
+                                    amountTransfered[1])
                 elif userInput == "createacct":
                     validAccounts.append(createacct(outputFilepath, validAccounts,
                                                     validAccountsPath, loginStatus))

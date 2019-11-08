@@ -2,7 +2,7 @@ login
 agent
 deposit
 1234567
-20000
+5000
 logout
 login
 machine
