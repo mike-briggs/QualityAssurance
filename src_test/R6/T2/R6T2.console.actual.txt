@@ -1,0 +1,28 @@
+Welcome to Quinterac
+Type 'exit' to leave
+> login
+Enter mode: agent
+Login Successful
+Enter action: deposit
+Enter account number: 1234567
+Enter amount: 1000
+Funds successfully deposited.
+Enter action: withdraw
+Enter account number: 1234567
+Enter amount: 100
+Funds successfully withdrawn
+Enter action: withdraw
+Enter account number: 12345678
+Invalid account number.
+Enter action: withdraw
+Enter account number: 123456
+Invalid account number.
+Enter action: withdraw
+Enter account number: 0123456
+Invalid account number.
+Enter action: withdraw
+Enter account number: 9999999
+Invalid account number.
+Enter action: logout
+Type 'exit' to leave
+> 

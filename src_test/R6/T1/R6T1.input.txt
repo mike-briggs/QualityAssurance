@@ -1,0 +1,14 @@
+login
+agent
+deposit
+1234567
+1000
+withdraw
+1234567
+100
+withdraw
+1234567
+
+withdraw
+
+logout

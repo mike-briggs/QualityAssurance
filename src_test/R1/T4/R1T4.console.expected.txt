@@ -4,16 +4,17 @@ Type 'exit' to leave
 Enter mode: machine
 Login Successful
 Enter action: login
+Enter action: 
 Enter action: logout
 Type 'exit' to leave
 > login
 Enter mode: agent
-Login successful
+Login Successful
 Enter action: logout
 Type 'exit' to leave
 > login
 Enter mode: agent
-Login successful
+Login Successful
 Enter action: logout
 Type 'exit' to leave
 > 

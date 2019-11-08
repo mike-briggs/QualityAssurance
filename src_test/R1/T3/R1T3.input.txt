@@ -1,14 +1,15 @@
-login machine
+login
+machine
 deposit
 1234567
 1234
-withdrawal
+withdraw
 1234567
 1000
 transfer
 1234567
-1234
 7654321
+1234
 createacct
 deleteacct
 logout
@@ -19,11 +20,11 @@ deposit
 1234
 withdraw
 1234567
-1234
+1000
 transfer
 1234567
-1234
 7654321
+1234
 createacct
 1111111
 accountname

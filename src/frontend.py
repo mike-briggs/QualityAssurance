@@ -5,9 +5,10 @@ import re
 
 
 class Account:
-    def __init__(self, number, dep):
+    def __init__(self, number, dep, wdr):
         self.number = number
         self.dep = dep
+        self.wdr = wdr
 
 
 def logout(outputFile):
@@ -79,8 +80,11 @@ def deposit(outputFile, validAccounts, loginState, accountDepositArray):
             print("Invalid amount.")
             return False
 
+# failed withdrawal returns false
+# successful withdrawal returns array(accountNum,amount) withdrawn to update session/acount withdrawal limit
 
-def withdraw(outputFile, validAccounts):
+
+def withdraw(outputFile, validAccounts, accountCaps, loginState):
 
     acctNum = input("Enter account number: ")  # account num
     print(acctNum)
@@ -93,16 +97,34 @@ def withdraw(outputFile, validAccounts):
         print(amount)
 
         if(amount.isdigit()):
-            with open(outputFile, 'a') as wf:
-                wf.write('\nWDR '+acctNum+' '+amount+' 0000000 ***')
-            print("Funds successfully withdrawn")
-            return True
+            if(int(amount) > 1000 and loginState == 2):
+                print("Over machine withdrawal limit.")
+                return False
+            elif(int(amount) > 99999999 and loginState == 1):
+                print("Over agent withdrawal limit.")
+                return False
+            else:
+                currentlyWithdrawn = 0
+                # find the array index with this account number and store how much was deposited in this session
+                for i in range(len(accountCaps)):
+                    if(accountCaps[i].number == acctNum):
+                        currentlyWithdrawn = accountCaps[i].wdr
+                        break
+                # check if we can still withdraw from this account
+                if(currentlyWithdrawn + int(amount) > 5000):
+                    print("Over daily withdraw limit.")
+                    return False
+                else:
+                    with open(outputFile, 'a') as wf:
+                        wf.write('\nWDR '+acctNum+' '+amount+' 0000000 ***')
+                    print("Funds successfully withdrawn")
+                    return [acctNum, amount]
         else:
             print("Invalid amount.")
             return False
 
 
-def transfer(outputFile, validAccounts):
+def transfer(outputFile, validAccounts, loginState):
     fromAccount = input("Enter (from) account: ")
     print(fromAccount)
 
@@ -123,22 +145,19 @@ def transfer(outputFile, validAccounts):
             print(amount)
 
             if (amount.isdigit()):                          # If amount not proper, error
-                print("Funds successfully transfered.")
-                with open(outputFile, 'a') as wf:
-                    wf.write('\nXFR '+toAccount+' ' +
-                             amount+' '+fromAccount+' ***')
-                return True
+                if(int(amount) > 10000 and loginState == 2):
+                    print("Over machine transfer limit.")
+                elif(int(amount) > 99999999 and loginState == 1):
+                    print("Over agent transfer limit.")
+                else:
+                    print("Funds successfully transfered.")
+                    with open(outputFile, 'a') as wf:
+                        wf.write('\nXFR '+toAccount+' ' +
+                                 amount+' '+fromAccount+' ***')
+                    return True
             else:
                 print("Invalid amount.")
                 return False
-
-    # elif (login == 1 and amount > 1000) or (login == 2 and amount > 999999.99):  # Enforce limit
-    #     print("Over withdrawal limit.")
-
-    # elif login == 1 and amount > 5000:                  # Daily limit: TODO
-    #     print("Amount is not a valid amount.")
-
-    # else
 
 
 def createacct(outputFile, validAccounts, validAccountsPath, loginState):
@@ -216,7 +235,7 @@ validAccounts = file.read().split(',')
 
 validAccountsObj = []
 for i in range(len(validAccounts)):
-    validAccountsObj.append(Account(validAccounts[i], 0))
+    validAccountsObj.append(Account(validAccounts[i], 0, 0))
 
 with open(outputFilepath, 'w') as wf:
     wf.write('')
@@ -246,9 +265,17 @@ while(True):
                                 validAccountsObj[i].dep += int(
                                     amountDeposited[1])
                 elif userInput == "withdraw":
-                    withdraw(outputFilepath, validAccounts)
+                    amountWithdrawn = withdraw(
+                        outputFilepath, validAccounts, validAccountsObj, loginStatus)
+
+                    if(amountWithdrawn):
+                        # find account number and update withdrawn amount of that account
+                        for i in range(len(validAccountsObj)):
+                            if(validAccountsObj[i].number == amountWithdrawn[0]):
+                                validAccountsObj[i].wdr += int(
+                                    amountWithdrawn[1])
                 elif userInput == "transfer":
-                    transfer(outputFilepath, validAccounts)
+                    transfer(outputFilepath, validAccounts, loginStatus)
                 elif userInput == "createacct":
                     validAccounts.append(createacct(outputFilepath, validAccounts,
                                                     validAccountsPath, loginStatus))

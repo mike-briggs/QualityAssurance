@@ -1,0 +1,72 @@
+Welcome to Quinterac
+Type 'exit' to leave
+> login
+Enter mode: agent
+Login Successful
+Enter action: deposit
+Enter account number: 1234567
+Enter amount: 1000
+Funds successfully deposited.
+Enter action: transfer
+Enter (from) account: 1234567
+Enter (to) account: 7654321
+Enter amount: 100
+Funds successfully transfered.
+Enter action: transfer
+Enter (from) account: 1234567
+Enter (to) account: 1234567
+Invalid account number.
+Enter action: 100
+Enter action: transfer
+Enter (from) account: 12345678
+Invalid account number.
+Enter action: 7654321
+Enter action: 100
+Enter action: transfer
+Enter (from) account: 123456
+Invalid account number.
+Enter action: 7654321
+Enter action: 100
+Enter action: transfer
+Enter (from) account: 0123456
+Invalid account number.
+Enter action: 7654321
+Enter action: 100
+Enter action: transfer
+Enter (from) account: a123456
+Invalid account number.
+Enter action: 7654321
+Enter action: 100
+Enter action: transfer
+Enter (from) account: 1111111
+Invalid account number.
+Enter action: 7654321
+Enter action: 100
+Enter action: transfer
+Enter (from) account: 1234567
+Enter (to) account: 76543210
+Invalid account number.
+Enter action: 100
+Enter action: transfer
+Enter (from) account: 1234567
+Enter (to) account: 765432
+Invalid account number.
+Enter action: 100
+Enter action: transfer
+Enter (from) account: 1234567
+Enter (to) account: 0765432
+Invalid account number.
+Enter action: 100
+Enter action: transfer
+Enter (from) account: 1234567
+Enter (to) account: a765432
+Invalid account number.
+Enter action: 100
+Enter action: transfer
+Enter (from) account: 1234567
+Enter (to) account: 1111111
+Invalid account number.
+Enter action: 100
+Enter action: logout
+Type 'exit' to leave
+> 

@@ -1,0 +1,16 @@
+login
+agent
+deposit
+1234567
+100
+transfer
+1234567
+7654321
+100
+transfer
+1234567
+transfer
+1234567
+7654321
+
+logout
