@@ -1,8 +1,3 @@
-NEW 1234567 000 0000000 accountname
-NEW 7654321 000 0000000 nameaccount
-EOS 0000000 000 ***
+
 DEL 1234567 000 0000000 accountname
-ERROR Account does not exist
-ERROR Account does not exist
-ERROR Source account number does not exist
-EOS 0000000 000 ***
+EOS 0000000 000 0000000 ***

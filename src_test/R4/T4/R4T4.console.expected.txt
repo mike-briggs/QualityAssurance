@@ -1,2 +1,29 @@
-Welcome!
+Welcome to Quinterac
+Type 'exit' to leave
+> login
+Enter mode: agent
+Login Successful
+Enter action: deleteacct
+Enter account number: 1234567
+Enter account name: accountname
+Account deleted successfully
+Enter action: deposit
+Enter account number: 1234567
+Invalid account number.
+Enter action: 1234
+Enter action: withdraw
+Enter account number: 1234567
+Invalid account number.
+Enter action: 1234
+Enter action: transfer
+Enter (from) account: 1234567
+Invalid account number.
+Enter action: 1234
+Enter action: 7654321
+Enter action: deleteacct
+Enter account number: 1234567
+Invalid account number.
+Enter action: accountname
+Enter action: logout
+Type 'exit' to leave
 > 
