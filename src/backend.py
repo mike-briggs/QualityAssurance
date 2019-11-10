@@ -56,7 +56,6 @@ def deposit(accountList, inputAccountNumber, inputAmount):
     return True
 
 # Withdraw money from an account
-# TODO: make sure account has enough Money
 # figure out if we have to enforce daily limits
 def withdraw(accountList, inputAccountNumber, inputAmount):
     inputAccount = accountList[accountList.index(inputAccountNumber)]
@@ -68,14 +67,18 @@ def withdraw(accountList, inputAccountNumber, inputAmount):
         return False
 
 # Transfer money from on account to another
-# TODO: make sure account has enough money
 def transfer(accountList, toAccountNumber, inputAmount, fromAccountNumber):
-    accountList[accountList.index(toAccountNumber)].balance += inputAmount
-    accountList[accountList.index(fromAccountNumber)].balance -= inputAmount
-    return True
+    fromAccount = accountList[accountList.index(fromAccountNumber)]
+    toAccount = accountList[accountList.index(toAccountNumber)]
+    if(float(fromAccount.balance) >= float(inputAmount)):
+        toAccount.balance += inputAmount
+        fromAccount.balance -= inputAmount
+        return True
+    else:
+        # Insufficient funds
+        return False
 
 # Create a new account
-# TODO: Make sure accountnumber is unique
 def createacct(accountList, inputAccountNumber, accountName):
     accountList.append(new Account(inputAccountNumber, 0, accountName))
     return True
@@ -100,7 +103,6 @@ outValidAccountListPath     = sys.argv[4]
 
 # Define working variables
 MasterAccountList   = parseMasterAccounts(inMasterAccountListPath) # master list of accounts and balances
-ValidAccountList    = []        # list of valid accounts
 TransactionList     = []        # list of incoming transactions
 
 ## TRANSACTIONS
