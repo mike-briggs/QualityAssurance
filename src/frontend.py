@@ -3,6 +3,10 @@ import sys
 import json
 import re
 
+# Account class holds the account number and how much has been:
+# deposited, withdrawn, transfered trhroughout this session.
+# As well as holds the temporary "balance"
+
 
 class Account:
     def __init__(self, number, dep, wdr, bal, xfr):
@@ -11,6 +15,9 @@ class Account:
         self.wdr = wdr
         self.bal = bal
         self.xfr = xfr
+
+# Writes to the output file that the session has ended
+# returns 0 on success
 
 
 def logout(outputFile):
@@ -125,6 +132,9 @@ def withdraw(outputFile, validAccounts, accountCaps, loginState):
             print("Invalid amount.")
             return False
 
+# Returns false on failed transfer (and writes to console output)
+# Returns array of [Account number, amount] on success
+
 
 def transfer(outputFile, validAccounts, loginState, accountDetails):
     fromAccount = input("Enter (from) account: ")
@@ -170,6 +180,9 @@ def transfer(outputFile, validAccounts, loginState, accountDetails):
             else:
                 print("Invalid amount.")
                 return False
+
+# Returns the new account number on success
+# otherwise returns false
 
 
 def createacct(outputFile, validAccounts, validAccountsPath, loginState):
@@ -234,9 +247,11 @@ def deleteacct(outputFile, validAccounts, loginState):
 # main
 
 
-validAccountsPath = sys.argv[1]  # file path for "valid_accounts.txt"
-outputFilepath = sys.argv[2]  # file path for "out.actual.txt"
+# file path for "valid_accounts.txt"
+validAccountsPath = sys.argv[1]
+outputFilepath = sys.argv[2]                # file path for "out.actual.txt"
 
+# initialize the login state as 0 (not logged in)
 loginStatus = 0
 
 file = open(validAccountsPath, 'r')
@@ -253,7 +268,7 @@ with open(outputFilepath, 'w') as wf:
     wf.write('')
 
 print("Welcome to Quinterac")
-while(True):
+while(True):    # First loop is the state before being logged in
 
     userInput = input('Type \'exit\' to leave\n> ')
     print(userInput)
@@ -263,6 +278,7 @@ while(True):
         loginStatus = login(outputFilepath)
         if(loginStatus > 0):                                        # if logged in
             while(loginStatus > 0):                                 # while session is active
+                # User is now logged in and has access to functions
                 userInput = input("Enter action: ")
                 print(userInput)
                 if userInput == "logout":
@@ -293,6 +309,7 @@ while(True):
                 elif userInput == "transfer":
                     amountTransfered = transfer(outputFilepath, validAccounts,
                                                 loginStatus, validAccountsObj)
+                    # need to update the accounts object to keep record of transaction limits
                     if(amountTransfered):
                         for i in range(len(validAccountsObj)):
                             if(validAccountsObj[i].number == amountTransfered[0]):
