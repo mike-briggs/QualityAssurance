@@ -41,7 +41,7 @@ TransactionList = [];
 class Account(self, accountNumber, balance, name):
     self.accountNumber = accountNumber
     self.balance = balance
-    self.depLimit = name
+    self.name = name
 
 def parseMasterAccounts(filepath):
     masterAccountList = []
@@ -50,7 +50,7 @@ def parseMasterAccounts(filepath):
         # stores each line (account number) in list
         for i in masterAccountList:
             line = masterAccountList[i].split()
-            masterAccountList[i] = new Account(line[0].strip(), line[1].split(), line[2].split())
+            masterAccountSList[i] = new Account(line[0].strip(), line[1].split(), line[2].split())
 
     # return list of valid accounts
     return masterAccountList
