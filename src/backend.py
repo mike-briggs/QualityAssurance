@@ -15,3 +15,8 @@
 #   Format coming in: AAAAAAA MMMMM NNNN
 #                     acctnum money name
 #   Read in transaction summary file and store in local data structure
+#   Go through each transaction
+#       Ensure transaction is valid
+#       Perform transaction by updating master account List
+#   Create new valid accounts list from Master
+#   Output valid accounts and master accounts
