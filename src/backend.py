@@ -1,6 +1,6 @@
 # backend.py
 # handles all (merged) transactions once a day
-
+import sys
 
 # Inputs:
 #   - Transaction summary file (merged from several)
@@ -20,3 +20,12 @@
 #       Perform transaction by updating master account List
 #   Create new valid accounts list from Master
 #   Output valid accounts and master accounts
+
+inMasterAccountListPath = sys.argv[1]
+inTransactionListPath = sys.argv[2]
+outMasterAccountListPath = sys.argv[3]
+outValidAccountListPath = sys.argv[4]
+
+ MasterAccountList = [];
+ ValidAccountList = [];
+ TransactionList = [];
