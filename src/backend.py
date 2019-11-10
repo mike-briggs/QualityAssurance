@@ -34,6 +34,9 @@ class Account(self, accountNumber, balance, name):
     self.balance = balance
     self.name = name
 
+    def toString():
+        return str(self.AccountNumber+" "+self.balance+" "+self.name)
+
 # returns a list of account objects
 def parseMasterAccounts(filepath):
     masterAccountList = []
@@ -48,44 +51,59 @@ def parseMasterAccounts(filepath):
     return masterAccountList
 
 # Deposit Money into an account
-def deposit(accountList, accountNumber, amount):
-    accountList[accountList.index(accountNumber)].balance += amount
+def deposit(accountList, inputAccountNumber, inputAmount):
+    accountList[accountList.index(inputAccountNumber)].balance += inputAmount
+    return True
 
 # Withdraw money from an account
 # TODO: make sure account has enough Money
 # figure out if we have to enforce daily limits
-def withdraw(accountList, accountNumber, amount):
-    accountList[accountList.index(accountNumber)].balance -= amount
+def withdraw(accountList, inputAccountNumber, inputAmount):
+    inputAccount = accountList[accountList.index(inputAccountNumber)]
+    if(float(inputAccount.balance) >= float(inputAmount)):
+        inputAccount.balance -= inputAmount
+        return True
+    else:
+        # Insufficient funds
+        return False
 
 # Transfer money from on account to another
 # TODO: make sure account has enough money
-def transfer(accountList, toAccountNumber, amount, fromAccountNumber):
-    accountList[accountList.index(toAccountNumber)].balance += amount
-    accountList[accountList.index(fromAccountNumber)].balance += amount
+def transfer(accountList, toAccountNumber, inputAmount, fromAccountNumber):
+    accountList[accountList.index(toAccountNumber)].balance += inputAmount
+    accountList[accountList.index(fromAccountNumber)].balance -= inputAmount
+    return True
 
 # Create a new account
 # TODO: Make sure accountnumber is unique
-def createacct(accountList, accountNumber, accountName):
-    accountList.append(new Account(accountNumber, 0, accountName))
+def createacct(accountList, inputAccountNumber, accountName):
+    accountList.append(new Account(inputAccountNumber, 0, accountName))
+    return True
 
 # Delete an account
-def deleteacct(accountList, accountNumber, accountName):
-    accountList.remove(accountNumber)
+def deleteacct(accountList, inputAccountNumber, accountName):
+    accountList.remove(inputAccountNumber)
+    return True
+
+def sortByAccount(a)
+    return a.accountNumber
 
 #
 # MAIN
 #
+## INPUTS
 # Define input and output file paths
-inMasterAccountListPath = sys.argv[1]
-inTransactionListPath = sys.argv[2]
-outMasterAccountListPath = sys.argv[3]
-outValidAccountListPath = sys.argv[4]
+inMasterAccountListPath     = sys.argv[1]
+inTransactionListPath       = sys.argv[2]
+outMasterAccountListPath    = sys.argv[3]
+outValidAccountListPath     = sys.argv[4]
 
 # Define working variables
-MasterAccountList = parseMasterAccounts(inMasterAccountListPath) # master list of accounts and balances
-ValidAccountList = []
-TransactionList = []
+MasterAccountList   = parseMasterAccounts(inMasterAccountListPath) # master list of accounts and balances
+ValidAccountList    = []        # list of valid accounts
+TransactionList     = []        # list of incoming transactions
 
+## TRANSACTIONS
 # Iterate through all Transactions
 for i in TransactionList
     # Split each transaction into its arguments
@@ -106,4 +124,22 @@ for i in TransactionList
 
     elif current[0] == "DEL"    # Delete account
         deleteacct(MasterAccountList, current[1], current[4])
+
+## OUTPUTS
+# Sort master list by account number
+MasterAccountList.sort(key=sortByAccount)
+
+# For each account
+for i in MasterAccountList
+    # Write to Master Account List
+    with open(outMasterAccountListPath, 'a') as wf:
+        wf.write(MasterAccountList[i].toString()) # Write to file
+        if(i != len(MasterAccountList) -1)
+            wf.write("\n")
+    # Write to Valid ACcount List
+    with open(outValidAccountListPath, 'a') as wf:
+        wf.write(MasterAccountList[i].accountNumber) # Write to file
+        if(i != len(MasterAccountList) -1)
+            wf.write("\n")
+
 
