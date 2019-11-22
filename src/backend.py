@@ -46,7 +46,7 @@ def parseMasterAccounts(filepath):
         # stores each line (account number) in list
         for i in masterAccountList:
             line = masterAccountList[i].split(" ")
-            masterAccountList[i] = new Account(line[0].strip(), line[1].strip(), line[2].strip())
+            masterAccountList[i] = Account(line[0].strip(), line[1].strip(), line[2].strip())
 
     # return list of valid accounts
     return masterAccountList
@@ -81,7 +81,7 @@ def transfer(accountList, toAccountNumber, inputAmount, fromAccountNumber):
 
 # Create a new account
 def createacct(accountList, inputAccountNumber, accountName):
-    accountList.append(new Account(inputAccountNumber, 0, accountName))
+    accountList.append(Account(inputAccountNumber, 0, accountName))
     return True
 
 # Delete an account
@@ -89,7 +89,7 @@ def deleteacct(accountList, inputAccountNumber, accountName):
     accountList.remove(inputAccountNumber)
     return True
 
-def sortByAccount(a)
+def sortByAccount(a):
     return a.accountNumber
 
 #
@@ -108,24 +108,24 @@ TransactionList     = []        # list of incoming transactions
 
 ## TRANSACTIONS
 # Iterate through all Transactions
-for i in TransactionList
+for i in TransactionList:
     # Split each transaction into its arguments
     current = TransactionList[i].split(" ")
     # 000 1111111 222 3333333 4444
     # TYP accntTo amt accntFr name
-    if current[0] == "DEP"      # Deposit
+    if current[0] == "DEP":      # Deposit
         deposit(MasterAccountList, current[1], current[2])
 
-    elif current[0] == "WDR"    # Withdraw
+    elif current[0] == "WDR":    # Withdraw
         withdraw(MasterAccountList, current[1], current[2])
 
-    elif current[0] == "XFR"    # Transfer
+    elif current[0] == "XFR":    # Transfer
         transfer(MasterAccountList, current[1], current[2], current[3])
 
-    elif current[0] == "NEW"    # Create account
+    elif current[0] == "NEW":    # Create account
         createacct(MasterAccountList, current[1], current[4])
 
-    elif current[0] == "DEL"    # Delete account
+    elif current[0] == "DEL":    # Delete account
         deleteacct(MasterAccountList, current[1], current[4])
 
 ## OUTPUTS
@@ -133,16 +133,16 @@ for i in TransactionList
 MasterAccountList.sort(key=sortByAccount)
 
 # For each account
-for i in MasterAccountList
+for i in MasterAccountList:
     # Write to Master Account List
     with open(outMasterAccountListPath, 'a') as wf:
         wf.write(MasterAccountList[i].toString()) # Write to file
-        if(i != len(MasterAccountList) -1)
+        if(i != len(MasterAccountList) -1):
             wf.write("\n")
     # Write to Valid ACcount List
     with open(outValidAccountListPath, 'a') as wf:
         wf.write(MasterAccountList[i].accountNumber) # Write to file
-        if(i != len(MasterAccountList) -1)
+        if(i != len(MasterAccountList) -1):
             wf.write("\n")
 
 
