@@ -29,10 +29,11 @@ import os
 #   Output valid accounts and master accounts
 
 # Used to help store the master accounts list
-class Account(self, accountNumber, balance, name):
-    self.accountNumber = accountNumber
-    self.balance = balance
-    self.name = name
+class Account:
+    def __init__(self, accountNumber, balance, name):
+        self.accountNumber = accountNumber
+        self.balance = balance
+        self.name = name
 
     def toString():
         return str(self.AccountNumber+" "+self.balance+" "+self.name)
