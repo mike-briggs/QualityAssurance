@@ -35,21 +35,40 @@ class Account:
         self.balance = balance
         self.name = name
 
-    def toString():
-        return str(self.AccountNumber+" "+self.balance+" "+self.name)
+    
 
 # returns a list of account objects
+
+def toString(acc_num, bal, name):
+        return str(acc_num+" "+bal+" "+name)
+
+
 def parseMasterAccounts(filepath):
     masterAccountList = []
     with open(filepath) as f:
         masterAccountList = f.readlines()
+        length = len(masterAccountList)
         # stores each line (account number) in list
-        for i in masterAccountList:
+        for i in range(length):
             line = masterAccountList[i].split(" ")
             masterAccountList[i] = Account(line[0].strip(), line[1].strip(), line[2].strip())
 
     # return list of valid accounts
     return masterAccountList
+
+def parseTransactionList(filepath):
+    transactionList = []
+    with open(filepath) as f:
+        transactionList = f.readlines()
+        #length = len(transactionList)
+        # stores each line (account number) in list
+        #for i in range(length):
+        #    line = transactionList[i].split(" ")
+        #    transactionList[i] = Account(line[0].strip(), line[1].strip(), line[2].strip())
+
+    # return list of valid accounts
+    return transactionList
+
 
 # Deposit Money into an account
 def deposit(accountList, inputAccountNumber, inputAmount):
@@ -104,39 +123,40 @@ outValidAccountListPath     = sys.argv[4]
 
 # Define working variables
 MasterAccountList   = parseMasterAccounts(inMasterAccountListPath) # master list of accounts and balances
-TransactionList     = []        # list of incoming transactions
+TransactionList     = parseTransactionList(inTransactionListPath)        # list of incoming transactions
 
 ## TRANSACTIONS
+length3 = len(TransactionList)
 # Iterate through all Transactions
-for i in TransactionList:
+for i in range(length3):
     # Split each transaction into its arguments
     current = TransactionList[i].split(" ")
     # 000 1111111 222 3333333 4444
     # TYP accntTo amt accntFr name
-    if current[0] == "DEP":      # Deposit
+    if current[0] == "DEP"  :    # Deposit
         deposit(MasterAccountList, current[1], current[2])
 
-    elif current[0] == "WDR":    # Withdraw
+    elif current[0] == "WDR"    :# Withdraw
         withdraw(MasterAccountList, current[1], current[2])
 
-    elif current[0] == "XFR":    # Transfer
+    elif current[0] == "XFR" :   # Transfer
         transfer(MasterAccountList, current[1], current[2], current[3])
 
-    elif current[0] == "NEW":    # Create account
+    elif current[0] == "NEW" :   # Create account
         createacct(MasterAccountList, current[1], current[4])
 
-    elif current[0] == "DEL":    # Delete account
+    elif current[0] == "DEL" :   # Delete account
         deleteacct(MasterAccountList, current[1], current[4])
 
 ## OUTPUTS
 # Sort master list by account number
 MasterAccountList.sort(key=sortByAccount)
-
+length2 = len(MasterAccountList)
 # For each account
-for i in MasterAccountList:
+for i in range(length2):
     # Write to Master Account List
     with open(outMasterAccountListPath, 'a') as wf:
-        wf.write(MasterAccountList[i].toString()) # Write to file
+        wf.write(toString(MasterAccountList[i].accountNumber,MasterAccountList[i].balance,MasterAccountList[i].name)) # Write to file
         if(i != len(MasterAccountList) -1):
             wf.write("\n")
     # Write to Valid ACcount List
