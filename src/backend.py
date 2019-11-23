@@ -35,14 +35,10 @@ class Account:
         self.balance = balance
         self.name = name
 
-    
+    def toString(self):
+        return self.accountNumber+" "+str(self.balance)+" "+self.name
 
 # returns a list of account objects
-
-def toString(acc_num, bal, name):
-        return str(acc_num+" "+bal+" "+name)
-
-
 def parseMasterAccounts(filepath):
     masterAccountList = []
     with open(filepath) as f:
@@ -71,9 +67,13 @@ def parseTransactionList(filepath):
 
 
 # Deposit Money into an account
-def deposit(accountList, inputAccountNumber, inputAmount):
-    accountList[accountList.index(inputAccountNumber)].balance += inputAmount
-    return True
+def deposit(accountList, inputAccountNumber, inputAmount, Dict):
+    # Check whether AccNum in Dic
+    for j in Dict:
+        if Dict[j].accountNumber == inputAccountNumber:  #if found,
+            accountList[j].balance = int(accountList[j].balance) + int(inputAmount) 
+        else:
+            return False
 
 # Withdraw money from an account
 # figure out if we have to enforce daily limits
@@ -125,38 +125,41 @@ outValidAccountListPath     = sys.argv[4]
 MasterAccountList   = parseMasterAccounts(inMasterAccountListPath) # master list of accounts and balances
 TransactionList     = parseTransactionList(inTransactionListPath)        # list of incoming transactions
 
+# Populate dict with MasterAccountList
+Dict = {}
+for i in range(len(MasterAccountList)):
+    Dict[i] = MasterAccountList[i]
+
 ## TRANSACTIONS
-length3 = len(TransactionList)
 # Iterate through all Transactions
-for i in range(length3):
+for i in range(1,len(TransactionList)):
     # Split each transaction into its arguments
-    current = TransactionList[i].split(" ")
+    current = TransactionList[i].split()
     # 000 1111111 222 3333333 4444
     # TYP accntTo amt accntFr name
-    if current[0] == "DEP"  :    # Deposit
-        deposit(MasterAccountList, current[1], current[2])
+    if current[0] == "DEP":      # Deposit
+        deposit(MasterAccountList, current[1], current[2], Dict)
 
-    elif current[0] == "WDR"    :# Withdraw
+    elif current[0] == "WDR":    # Withdraw
         withdraw(MasterAccountList, current[1], current[2])
 
-    elif current[0] == "XFR" :   # Transfer
+    elif current[0] == "XFR":    # Transfer
         transfer(MasterAccountList, current[1], current[2], current[3])
 
-    elif current[0] == "NEW" :   # Create account
+    elif current[0] == "NEW":    # Create account
         createacct(MasterAccountList, current[1], current[4])
 
-    elif current[0] == "DEL" :   # Delete account
+    elif current[0] == "DEL":    # Delete account
         deleteacct(MasterAccountList, current[1], current[4])
 
 ## OUTPUTS
 # Sort master list by account number
-MasterAccountList.sort(key=sortByAccount)
-length2 = len(MasterAccountList)
+# MasterAccountList.sort(key=sortByAccount)
 # For each account
-for i in range(length2):
+for i in range(len(MasterAccountList)):
     # Write to Master Account List
     with open(outMasterAccountListPath, 'a') as wf:
-        wf.write(toString(MasterAccountList[i].accountNumber,MasterAccountList[i].balance,MasterAccountList[i].name)) # Write to file
+        wf.write(MasterAccountList[i].toString()) # Write to file
         if(i != len(MasterAccountList) -1):
             wf.write("\n")
     # Write to Valid ACcount List
