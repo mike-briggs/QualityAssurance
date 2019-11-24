@@ -39,6 +39,15 @@ class Account:
     def toString(self):
         return self.accountNumber+" "+str(self.balance)+" "+self.name
 
+# Handles all merged transactions
+def mergeFiles():
+    input_files = glob.glob("*.out.actual.txt")
+
+    with open("merge.txt", "wb") as outf:
+        for f in input_files:
+            with open(f, "rb") as inf:
+                outf.write(inf.read())
+
 # returns a list of account objects
 def parseMasterAccounts(filepath):
     masterAccountList = []
@@ -61,16 +70,6 @@ def parseTransactions(filepath):
 
     # return list of transactions
     return transactionList
-
-# Handles all merged transactions
-def mergeFiles(){
-    input_files = glob.glob("*.out.actual.txt")
-
-    with open("merge.txt", "wb") as outf:
-        for f in input_files:
-            with open(f, "rb") as inf:
-                outf.write(inf.read())
-
 
 # Deposit Money into an account
 def deposit(accountList, inputAccountNumber, inputAmount):
@@ -119,7 +118,6 @@ def deleteacct(accountList, inputAccountNumber, accountName):
 ## MAIN
 
 mergeFiles()
-
 inMasterAccountListPath = sys.argv[1] # master_accounts.txt
 inTransactionListPath = sys.argv[2] # merge2.txt
 outMasterAccountListPath = sys.argv[3]  # master_accounts_out.txt
