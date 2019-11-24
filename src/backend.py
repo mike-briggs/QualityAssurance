@@ -2,6 +2,7 @@
 # handles all (merged) transactions once a day
 import sys
 import os
+import glob
 
 # Inputs:
 #   - Transaction summary file (merged from several)
@@ -53,13 +54,23 @@ def parseMasterAccounts(filepath):
     return masterAccountList
 
 # returns a list of transactions
-def parseTransactionList(filepath):
+def parseTransactions(filepath):
     transactionList = []
     with open(filepath) as f:
         transactionList = f.readlines()
 
     # return list of transactions
     return transactionList
+
+# Handles all merged transactions
+def mergeFiles(){
+    input_files = glob.glob("*.out.actual.txt")
+
+    with open("merge.txt", "wb") as outf:
+        for f in input_files:
+            with open(f, "rb") as inf:
+                outf.write(inf.read())
+
 
 # Deposit Money into an account
 def deposit(accountList, inputAccountNumber, inputAmount):
@@ -103,9 +114,11 @@ def deleteacct(accountList, inputAccountNumber, accountName):
             accountList.remove(accountList[j])
             return True
 
-def sortByAccount(a):
-    return a.accountNumber
 
+
+## MAIN
+
+mergeFiles()
 
 inMasterAccountListPath = sys.argv[1] # master_accounts.txt
 inTransactionListPath = sys.argv[2] # merge2.txt
@@ -113,7 +126,7 @@ outMasterAccountListPath = sys.argv[3]  # master_accounts_out.txt
 outValidAccountListPath = sys.argv[4]   # valid_accounts_out.txt
 
 MasterAccountList = parseMasterAccounts(inMasterAccountListPath)
-TransactionList = parseTransactionList(inTransactionListPath)
+TransactionList = parseTransactions(inTransactionListPath)
 
 
 # Put account numbers into dictionary, key=index of obj
@@ -144,7 +157,6 @@ for i in range(1,len(TransactionList)):
     
     elif current[0] == "EOS":    # End of session
         print("EOS")
-
 
 
 ## OUTPUTS
