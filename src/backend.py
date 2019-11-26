@@ -79,13 +79,14 @@ def deposit(accountList, inputAccountNumber, inputAmount):
             return True
 
 # Withdraw money from an account
-# figure out if we have to enforce daily limits
 def withdraw(accountList, inputAccountNumber, inputAmount):
     for j in range(len(accountList)):
+        #assert accountList[j].accountNumber == inputAccountNumber, "Account number is valid"
         if accountList[j].accountNumber == inputAccountNumber:
+            #assert int(accountList[j].balance) >= int(inputAmount)
             if int(accountList[j].balance) >= int(inputAmount):
                 accountList[j].balance = int(accountList[j].balance) - int(inputAmount)
-                return True
+                return [int(accountList[j].accountNumber), int(accountList[j].balance)]
 
 # Transfer money from on account to another
 def transfer(accountList, toAccountNumber, inputAmount, fromAccountNumber):
@@ -104,7 +105,7 @@ def transfer(accountList, toAccountNumber, inputAmount, fromAccountNumber):
 # Create a new account
 def createacct(accountList, inputAccountNumber, accountName):
     accountList.append(Account(inputAccountNumber, 0, accountName))
-    return True
+    return accountList
 
 # Delete an account
 def deleteacct(accountList, inputAccountNumber, accountName):
@@ -117,11 +118,11 @@ def deleteacct(accountList, inputAccountNumber, accountName):
 
 ## MAIN
 
-mergeFiles()
-inMasterAccountListPath = sys.argv[1] # master_accounts.txt
-inTransactionListPath = sys.argv[2] # merge2.txt
-outMasterAccountListPath = sys.argv[3]  # master_accounts_out.txt
-outValidAccountListPath = sys.argv[4]   # valid_accounts_out.txt
+mergeFiles() #uncomment when testing
+inMasterAccountListPath = "master_accounts.txt" # master_accounts.txt
+inTransactionListPath = "mergewT4.txt" # merge.txt for program, mergeT1.txt for T1, mergeT2.txt for T2 and so on...
+outMasterAccountListPath = "master_accounts_out.txt"  # master_accounts_out.txt
+outValidAccountListPath = "valid_accounts_out.txt"   # valid_accounts_out.txt
 
 MasterAccountList = parseMasterAccounts(inMasterAccountListPath)
 TransactionList = parseTransactions(inTransactionListPath)
