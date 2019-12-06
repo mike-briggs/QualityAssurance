@@ -8,3 +8,4 @@ agent
 logout
 login
 not_a_type
+exit

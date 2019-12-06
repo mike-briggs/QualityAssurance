@@ -18,3 +18,4 @@ deleteacct
 1111111
 accountname
 logout
+exit
