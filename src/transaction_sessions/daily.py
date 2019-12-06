@@ -52,7 +52,7 @@ for currentDirectoryGenerator in os.walk("."):
         currentInputLines = ''
         with open(inputFileName, 'r') as inputFile:
             currentInputLines = inputFile.read()
-
+        currentCommandToRun = ['python'] + ['frontend.py'] + ['valid_accounts.txt'] + ['output.txt']
         # Run the frontend script and get the output
         # If it takes longer than a set timeout value to complete, kill it
         frontendOutput = ''
