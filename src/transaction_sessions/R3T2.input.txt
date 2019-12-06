@@ -1,0 +1,10 @@
+login
+agent
+createacct
+1111111
+NAME
+logout
+login
+machine
+createacct
+logout

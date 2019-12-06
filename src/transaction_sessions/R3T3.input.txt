@@ -1,0 +1,20 @@
+login
+agent
+createacct
+1111111
+AccountName
+createacct
+1111111
+AccountNM
+createacct
+12345678
+AccountNAME
+createacct
+123456 ACCNAME
+createacct
+0123456
+NAME
+createacct
+A012345
+ACCNM
+logout

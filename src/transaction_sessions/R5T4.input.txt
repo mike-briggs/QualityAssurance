@@ -1,0 +1,15 @@
+login
+machine
+deposit
+1234567
+1500
+deposit
+1234567
+1500
+deposit
+1234567
+1500
+deposit
+1234567
+501
+logout

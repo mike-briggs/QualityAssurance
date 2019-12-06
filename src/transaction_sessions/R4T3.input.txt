@@ -1,0 +1,12 @@
+login
+machine
+deleteacct
+1234567
+accountname
+logout
+login
+agent
+deleteacct
+1234567
+accountname
+logout

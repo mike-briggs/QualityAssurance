@@ -1,0 +1,16 @@
+login
+agent
+deposit
+1234567
+5000
+deposit
+7654321
+5000
+withdraw
+7654321
+5000
+transfer
+1234567
+7654321
+1000
+logout
