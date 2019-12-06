@@ -267,8 +267,8 @@ for i in range(len(validAccounts)):
 with open(outputFilepath, 'w') as wf:
     wf.write('')
 
-with open(transaction_session) as f:
-    session = f.readlines()
+#with open(transaction_session) as f:
+    #session = f.readlines()
 count = -1
 print("Welcome to Quinterac")
 while(True):    # First loop is the state before being logged in
