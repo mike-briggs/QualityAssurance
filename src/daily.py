@@ -2,6 +2,7 @@ import subprocess
 import os
 
 
+
 class FileNames():
     DAILY_FOLDER_PREFIX = 'D'
     NO_VALID_ACCOUNTS_FILE_INDICATOR = '.no_valid_accounts'
