@@ -2,7 +2,7 @@ import subprocess
 import os
 
 class FileNames():
-    DAILY_FOLDER_PREFIX = 'D'
+    DAILY_FOLDER_PREFIX = 'T'
     NO_VALID_ACCOUNTS_FILE_INDICATOR = '.no_valid_accounts'
     VALID_ACCOUNTS_FILE = 'valid_accounts.txt'
     INPUT_FILE_SUFFIX = '.input.txt'
@@ -23,7 +23,9 @@ for currentDirectoryGenerator in os.walk("."):
         # Split the directory name to get separate folder names
         currentDirectory = currentDirectory.replace('\\', '/')
         directoryNames = currentDirectory.split('/')[1:]
-            
+
+        print(currentDirectory)
+        print(directoryNames)     
         # Get the current requirement and test case from folders
         currentRequirementName = directoryNames[0]
         currentTestCaseName = directoryNames[1]
