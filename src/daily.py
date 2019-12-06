@@ -1,16 +1,16 @@
 import subprocess
 import os
 
-class FileNames():
-    TESTCASE_FOLDER_PREFIX = 'T'
-    NO_VALID_ACCOUNTS_FILE_INDICATOR = '.no_valid_accounts'
-    VALID_ACCOUNTS_FILE = 'valid_accounts.txt'
-    INPUT_FILE_SUFFIX = '.input.txt'
-    ACTUAL_OUTPUT_FILE_SUFFIX = '.out.actual.txt'
-    EXPECTED_NONE_OUTPUT_FILE = 'none.out.expected.txt'
-    EXPECTED_OUTPUT_FILE_SUFFIX = '.out.expected.txt'
-    ACTUAL_CONSOLE_FILE_SUFFIX = '.console.actual.txt'
-    EXPECTED_CONSOLE_FILE_SUFFIX = '.console.expected.txt'
+    class FileNames():
+        DAILY_FOLDER_PREFIX = 'D'
+        NO_VALID_ACCOUNTS_FILE_INDICATOR = '.no_valid_accounts'
+        VALID_ACCOUNTS_FILE = 'valid_accounts.txt'
+        INPUT_FILE_SUFFIX = '.input.txt'
+        ACTUAL_OUTPUT_FILE_SUFFIX = '.out.actual.txt'
+        EXPECTED_NONE_OUTPUT_FILE = 'none.out.expected.txt'
+        EXPECTED_OUTPUT_FILE_SUFFIX = '.out.expected.txt'
+        ACTUAL_CONSOLE_FILE_SUFFIX = '.console.actual.txt'
+        EXPECTED_CONSOLE_FILE_SUFFIX = '.console.expected.txt'
 
     for currentDirectoryGenerator in os.walk("."):
 
