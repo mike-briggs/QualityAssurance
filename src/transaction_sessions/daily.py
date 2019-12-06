@@ -12,6 +12,8 @@ class FileNames():
     ACTUAL_CONSOLE_FILE_SUFFIX = '.console.actual.txt'
     EXPECTED_CONSOLE_FILE_SUFFIX = '.console.expected.txt'
 
+
+
 for currentDirectoryGenerator in os.walk("."):
 
      # Get the current directory name
@@ -62,9 +64,10 @@ for currentDirectoryGenerator in os.walk("."):
                 stdout=subprocess.PIPE,
                 stderr=subprocess.DEVNULL,
                 input=currentInputLines,
-                universal_newlines=True,
-                timeout=PROCESS_TIMEOUT
+                universal_newlines=True
+                
             )
             frontendOutput = frontendProcess.stdout
+            
         except subprocess.TimeoutExpired:
             pass
