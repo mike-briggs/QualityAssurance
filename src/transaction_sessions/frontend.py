@@ -272,11 +272,11 @@ with open(transaction_session) as f:
 count = -1
 print("Welcome to Quinterac")
 while(True):    # First loop is the state before being logged in
-    count = count + 1
-    #userInput = input('Type \'exit\' to leave\n> ')
+    #count = count + 1
+    userInput = input('Type \'exit\' to leave\n> ')
     #print(userInput)
 
-    userInput = session[count]
+    #userInput = session[count]
 
     if(userInput == 'login'):
         # set login status with function
