@@ -5,7 +5,7 @@ class FileNames():
     DAILY_FOLDER_PREFIX = 'T'
     NO_VALID_ACCOUNTS_FILE_INDICATOR = '.no_valid_accounts'
     VALID_ACCOUNTS_FILE = 'valid_accounts.txt'
-    INPUT_FILE_SUFFIX = '.input.txt'
+    INPUT_FILE_SUFFIX = '.txt'
     ACTUAL_OUTPUT_FILE_SUFFIX = '.out.actual.txt'
     EXPECTED_NONE_OUTPUT_FILE = 'none.out.expected.txt'
     EXPECTED_OUTPUT_FILE_SUFFIX = '.out.expected.txt'
