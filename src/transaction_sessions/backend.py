@@ -43,8 +43,8 @@ class Account:
 def mergeFiles(day):
     temp = ""
     temp = day
-    location_in = "./D%d/**/*.out.txt" %(day)
-    location_out = "./D%d/day_merged_out.txt" %(day)
+    location_in = "./D%s/**/*.out.txt" %(day)
+    location_out = "./D%s/day_merged_out.txt" %(day)
     print(location_in)
     input_files = glob.glob(location_in)
 
@@ -128,7 +128,7 @@ mergeFiles(day) #uncomment when testing
 inMasterAccountListPath = "master_accounts.txt" # master_accounts.txt
 filesToMerge = ""
 
-inTransactionListPath = "./D%d/day_merged_out.txt" %(day)# merge.txt for program, mergeT1.txt for T1, mergeT2.txt for T2 and so on...
+inTransactionListPath = "./D%s/day_merged_out.txt" %(day)# merge.txt for program, mergeT1.txt for T1, mergeT2.txt for T2 and so on...
 outMasterAccountListPath = "master_accounts_out.txt"  # master_accounts_out.txt
 outValidAccountListPath = "valid_accounts_out.txt"   # valid_accounts_out.txt
 

@@ -53,23 +53,18 @@ for currentDirectoryGenerator in os.walk("."):
         nextPath = temp + nextElement
         print(nextPath) 
         
-        if(not path.exists(nextPath)):
+        if(not os.path.exists(nextPath)):
             currentCommandToRun = ['python'] + ['backend.py'] + [currentDay]
             #call backend because next session does not exist
             try:
-            frontendProcess = subprocess.run(
-                currentCommandToRun,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.DEVNULL,
-                input=currentInputLines,
-                universal_newlines=True
+                backendProcess = subprocess.run(
+                    currentCommandToRun                
+                )
+                currentDay = currentDay + 1
                 
-            )
-            currentDay = currentDay + 1
-            frontendOutput = frontendProcess.stdout
             
-        except subprocess.TimeoutExpired:
-            pass
+            except subprocess.TimeoutExpired:
+                pass
 
         # Try to extract requirement and testcase number
         try:
