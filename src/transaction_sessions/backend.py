@@ -122,20 +122,19 @@ def deleteacct(accountList, inputAccountNumber, accountName):
 
 
 ## MAIN
+day = sys.argv[1]
+mergeFiles(day) #uncomment when testing
 
-mergeFiles(1) #uncomment when testing
-mergeFiles(2)
-mergeFiles(3)
-mergeFiles(4)
-mergeFiles(5)
 inMasterAccountListPath = "master_accounts.txt" # master_accounts.txt
 filesToMerge = ""
-inTransactionListPath = "days_merged.txt"# merge.txt for program, mergeT1.txt for T1, mergeT2.txt for T2 and so on...
+
+inTransactionListPath = "./D%d/day_merged_out.txt" %(day)# merge.txt for program, mergeT1.txt for T1, mergeT2.txt for T2 and so on...
 outMasterAccountListPath = "master_accounts_out.txt"  # master_accounts_out.txt
 outValidAccountListPath = "valid_accounts_out.txt"   # valid_accounts_out.txt
 
 MasterAccountList = parseMasterAccounts(inMasterAccountListPath)
 TransactionList = parseTransactions(inTransactionListPath)
+
 
 
 # Put account numbers into dictionary, key=index of obj

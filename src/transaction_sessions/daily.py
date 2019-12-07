@@ -14,6 +14,8 @@ class FileNames():
 
 
 
+currentDay = 1
+
 for currentDirectoryGenerator in os.walk("."):
 
      # Get the current directory name
@@ -27,12 +29,48 @@ for currentDirectoryGenerator in os.walk("."):
         directoryNames = currentDirectory.split('/')[1:]
 
         print(currentDirectory)
-        print(directoryNames)     
+        #print(directoryNames)     
         # Get the current requirement and test case from folders
         currentRequirementName = directoryNames[0]
         currentTestCaseName = directoryNames[1]
         currentTestName = currentRequirementName + currentTestCaseName
-        print(currentRequirementName[1])
+        
+
+        #SEPARATE DAILY SESSIONS
+        #In folder structure DxTx currentRequirementName[1] = D(x) 
+        # ex. D1 : currentRequirementName[1] = 1
+        #     D4 : currentRequirementName[1] = 4
+
+        #Check if we need to run backend: no more files in Dx/T1...Dx/T4
+        #Keep track of current session number, and if there are no more files
+        # after that session number, call backend
+          
+        lastElement = currentDirectory[len(currentDirectory)-1]
+        #print(lastElement)
+        temp = currentDirectory[:-1]
+        nextElement = int(lastElement) + 1
+        nextElement = str(nextElement)
+        nextPath = temp + nextElement
+        print(nextPath) 
+        
+        if(not path.exists(nextPath)):
+            currentCommandToRun = ['python'] + ['backend.py'] + [currentDay]
+            #call backend because next session does not exist
+            try:
+            frontendProcess = subprocess.run(
+                currentCommandToRun,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.DEVNULL,
+                input=currentInputLines,
+                universal_newlines=True
+                
+            )
+            currentDay = currentDay + 1
+            frontendOutput = frontendProcess.stdout
+            
+        except subprocess.TimeoutExpired:
+            pass
+
         # Try to extract requirement and testcase number
         try:
             currentRequirementNumber = int(currentRequirementName[1:])
@@ -45,13 +83,12 @@ for currentDirectoryGenerator in os.walk("."):
         except:
             pass # TODO: print error
 
-        currentRequirementName = directoryNames[0]
-        currentTestCaseName = directoryNames[1]
+        
         currentTestName = currentRequirementName + currentTestCaseName
         inputFileName = currentDirectory + '/' + currentTestName + FileNames.INPUT_FILE_SUFFIX
         outputFileName = currentDirectory + '/' + currentTestName + FileNames.OUTPUT_FILE_SUFFIX
-        print(inputFileName)
-        print(outputFileName)
+        #print(inputFileName)
+        #print(outputFileName)
 
         currentInputLines = ''
         with open(inputFileName, 'r') as inputFile:
