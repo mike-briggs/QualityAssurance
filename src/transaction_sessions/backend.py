@@ -98,10 +98,10 @@ def transfer(accountList, toAccountNumber, inputAmount, fromAccountNumber):
     for j in range(len(accountList)):
         if accountList[j].accountNumber == toAccountNumber:
             toAccount = accountList[j].accountNumber
-            toIndex = j;
+            toIndex = j
         if accountList[j].accountNumber == fromAccountNumber:
             fromAccount = accountList[j].accountNumber
-            fromIndex = j;
+            fromIndex = j
 
     if fromAccount >= inputAmount:
         accountList[toIndex].balance = int(accountList[toIndex].balance) + int(inputAmount)
