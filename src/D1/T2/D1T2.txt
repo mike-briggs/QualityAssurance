@@ -1,6 +1,9 @@
 deposit
 login
 agent
+createacct
+1234567
+accnam
 deposit
 1234567
 1234
