@@ -56,17 +56,17 @@ for currentDirectoryGenerator in os.walk(path):
         nextPath = temp + nextElement
         #print(nextPath) 
         
-        #if(not os.path.exists(nextPath)):
-        #    
-        #    currentCommandToRun = ['python'] + ['backend.py'] + [str(currentDay)] + ['./D']
-        #    #call backend because next session does not exist
-        #    try:
-        #        backendProcess = subprocess.run(currentCommandToRun)
-        #        currentDay = currentDay + 1
-        #        
-        #    
-        #    except subprocess.TimeoutExpired:
-        #        pass
+        if(not os.path.exists(nextPath)):
+            
+            currentCommandToRun = ['python'] + ['backend.py'] + [str(day)]
+            #call backend because next session does not exist
+            try:
+                backendProcess = subprocess.run(currentCommandToRun)
+                currentDay = currentDay + 1
+                
+            
+            except subprocess.TimeoutExpired:
+                pass
 
         
         currentTestName = currentRequirementName + currentTestCaseName

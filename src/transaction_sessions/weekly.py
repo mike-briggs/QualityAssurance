@@ -2,6 +2,7 @@ import os
 import subprocess
 import glob
 
+
 # if this string has length of 2 (and starts with D)
 # return true, else false
 
@@ -31,7 +32,14 @@ for i in folders:
         runDaily = subprocess.run(runCommand)
 
         # TODO: Execute backend at the end of each daily
-        # if(command ran successfully)
+        #p = subprocess.Popen(...
+        
+        #poll = p.poll()
+        #if poll == None:
+        # p.subprocess is alive
+
+        #if(poll != None):
+        
         
     except subprocess.TimeoutExpired:
         pass

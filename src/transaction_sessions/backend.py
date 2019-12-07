@@ -110,6 +110,8 @@ def withdraw(accountList, inputAccountNumber, inputAmount):
 
 
 def transfer(accountList, toAccountNumber, inputAmount, fromAccountNumber):
+    toAccountBalance = 0
+    fromAccountBalance = 0
     for j in range(len(accountList)):
         if accountList[j].accountNumber == toAccountNumber:
             toAccountBalance = accountList[j].balance
@@ -118,7 +120,7 @@ def transfer(accountList, toAccountNumber, inputAmount, fromAccountNumber):
             fromAccountBalance = accountList[j].balance
             fromIndex = j
 
-    if fromAccountBalance >= inputAmount:
+    if fromAccountBalance >= int(inputAmount):
         accountList[toIndex].balance = int(
             accountList[toIndex].balance) + int(inputAmount)
         accountList[fromIndex].balance = int(
