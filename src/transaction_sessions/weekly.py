@@ -23,8 +23,11 @@ for i in folders:
     print(i)
     # run daily with what day of the week we want
     runCommand = ["python"]+["daily.py"]+[i]
-
     try:
         runDaily = subprocess.run(runCommand)
+
+        # TODO: Execute backend at the end of each daily
+        # if(command ran successfully)
+        print (os.)
     except subprocess.TimeoutExpired:
         pass
