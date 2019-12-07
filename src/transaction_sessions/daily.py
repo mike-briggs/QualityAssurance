@@ -1,5 +1,6 @@
 import subprocess
 import os
+import sys
 
 class FileNames():
     DAILY_FOLDER_PREFIX = 'T'
@@ -16,11 +17,14 @@ class FileNames():
 
 currentDay = 1
 
+
+#currentDirectory = sys.argv[1]
+
 for currentDirectoryGenerator in os.walk("."):
 
      # Get the current directory name
     currentDirectory = currentDirectoryGenerator[0]
-
+    print(currentDirectory)
     # If this is a test case directory
     if(FileNames.DAILY_FOLDER_PREFIX in currentDirectory):
             
@@ -54,29 +58,16 @@ for currentDirectoryGenerator in os.walk("."):
         print(nextPath) 
         
         if(not os.path.exists(nextPath)):
-            currentCommandToRun = ['python'] + ['backend.py'] + [currentDay]
+            
+            currentCommandToRun = ['python'] + ['backend.py'] + [str(currentDay)] + ['./D']
             #call backend because next session does not exist
             try:
-                backendProcess = subprocess.run(
-                    currentCommandToRun                
-                )
+                backendProcess = subprocess.run(currentCommandToRun)
                 currentDay = currentDay + 1
                 
             
             except subprocess.TimeoutExpired:
                 pass
-
-        # Try to extract requirement and testcase number
-        try:
-            currentRequirementNumber = int(currentRequirementName[1:])
-            currentTestCaseNumber = int(currentTestCaseName[1:])
-
-            # If everything is valid, append current testcase to list of testcases to potentially run
-            testcaseIdentifiers.append(
-            (currentRequirementNumber, currentTestCaseNumber, currentTestName, currentDirectory)
-            )
-        except:
-            pass # TODO: print error
 
         
         currentTestName = currentRequirementName + currentTestCaseName

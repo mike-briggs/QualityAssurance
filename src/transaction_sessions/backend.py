@@ -123,14 +123,19 @@ def deleteacct(accountList, inputAccountNumber, accountName):
 
 ## MAIN
 day = sys.argv[1]
+prevDay = int(day) - 1
+prevDay = str(prevDay)
+print(prevDay)
 mergeFiles(day) #uncomment when testing
 
-inMasterAccountListPath = "master_accounts.txt" # master_accounts.txt
-filesToMerge = ""
+if(int(day) == 1):
+    inMasterAccountListPath = "master_accounts.txt"
+else:
+    inMasterAccountListPath = "./D%s/master_accounts_out.txt"%(prevDay) # of previous day
 
 inTransactionListPath = "./D%s/day_merged_out.txt" %(day)# merge.txt for program, mergeT1.txt for T1, mergeT2.txt for T2 and so on...
-outMasterAccountListPath = "master_accounts_out.txt"  # master_accounts_out.txt
-outValidAccountListPath = "valid_accounts_out.txt"   # valid_accounts_out.txt
+outMasterAccountListPath = "./D%s/master_accounts_out.txt"%(day)  # master_accounts_out.txt
+outValidAccountListPath = "./D%s/valid_accounts_out.txt"%(day)   # valid_accounts_out.txt
 
 MasterAccountList = parseMasterAccounts(inMasterAccountListPath)
 TransactionList = parseTransactions(inTransactionListPath)
