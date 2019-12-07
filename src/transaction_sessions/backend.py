@@ -57,7 +57,6 @@ def mergeFiles(day):
 
 # returns a list of account objects
 
-
 def parseMasterAccounts(filepath):
     masterAccountList = []
     with open(filepath) as f:
