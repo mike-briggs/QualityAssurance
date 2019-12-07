@@ -16,11 +16,11 @@ class FileNames():
 
 
 currentDay = 1
-
+day = sys.argv[1]
 
 #currentDirectory = sys.argv[1]
-
-for currentDirectoryGenerator in os.walk("."):
+path = './D%s/'%(day)
+for currentDirectoryGenerator in os.walk(path):
 
      # Get the current directory name
     currentDirectory = currentDirectoryGenerator[0]
