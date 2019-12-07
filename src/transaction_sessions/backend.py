@@ -45,7 +45,7 @@ class Account:
 def mergeFiles(day):
     temp = ""
     temp = day
-    location_in = "./D%s/**/*.out.txt" % (day)
+    location_in = "./D%s/*/*.out.txt" % (day)
     location_out = "./D%s/day_merged_out.txt" % (day)
     print(location_in)
     input_files = glob.glob(location_in)
