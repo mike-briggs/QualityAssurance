@@ -32,7 +32,7 @@ for currentDirectoryGenerator in os.walk(path):
         currentDirectory = currentDirectory.replace('\\', '/')
         directoryNames = currentDirectory.split('/')[1:]
 
-        print(currentDirectory)
+        #print(currentDirectory)
         # print(directoryNames)
         # Get the current requirement and test case from folders
         currentRequirementName = directoryNames[0]
@@ -54,7 +54,7 @@ for currentDirectoryGenerator in os.walk(path):
         nextElement = int(lastElement) + 1
         nextElement = str(nextElement)
         nextPath = temp + nextElement
-        print(nextPath) 
+        #print(nextPath) 
         
         #if(not os.path.exists(nextPath)):
         #    
