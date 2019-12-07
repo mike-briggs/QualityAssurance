@@ -14,9 +14,16 @@ transfer
 1234567
 7654321
 1234
+deposit
+1234567
+1000
 createacct
 1111111
 accountname
+transfer
+1234567
+1111111
+1000
 deleteacct
 1111111
 accountname
