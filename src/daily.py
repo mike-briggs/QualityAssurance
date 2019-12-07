@@ -25,15 +25,13 @@ for currentDirectoryGenerator in os.walk(path):
     # Get the current directory name
     currentDirectory = currentDirectoryGenerator[0]
     print(currentDirectory)
-    # If this is a test case directory
+    # If this is a day directory
     if(FileNames.DAILY_FOLDER_PREFIX in currentDirectory):
 
         # Split the directory name to get separate folder names
         currentDirectory = currentDirectory.replace('\\', '/')
         directoryNames = currentDirectory.split('/')[1:]
 
-        #print(currentDirectory)
-        # print(directoryNames)
         # Get the current requirement and test case from folders
         currentRequirementName = directoryNames[0]
         currentTestCaseName = directoryNames[1]
