@@ -6,6 +6,10 @@ import glob
 # return true, else false
 
 
+class FileNames():
+    DAILY_FOLDER_PREFIX = 'D'
+
+
 def filterFolderStructure(arr):
     if(len(arr) == 2):
         return True
@@ -14,20 +18,24 @@ def filterFolderStructure(arr):
 
 
 # get all files/folders starting with D
-files = glob.glob("D*")
+files = glob.glob(FileNames.DAILY_FOLDER_PREFIX+"*")
 # get array of folders with our filter applied
 folders = filter(filterFolderStructure, files)
 
 # run the daily script with all the "days" we found
 for i in folders:
-    print(i)
+    dayNumber = i[1:]
+    print(dayNumber)
     # run daily with what day of the week we want
-    runCommand = ["python"]+["daily.py"]+[i]
+    dailyCommand = ["python"]+["daily.py"]+[dayNumber]
     try:
-        runDaily = subprocess.run(runCommand)
+        runDaily = subprocess.run(dailyCommand)
 
-        # TODO: Execute backend at the end of each daily
-        # if(command ran successfully)
-        print (os.)
+        # TODO:     if(command ran successfully):
+        backendCommand = ["python"]+["backend.py"]+[dayNumber]
+        try:
+            runBackend = subprocess.run(backendCommand)
+        except subprocess.TimeoutExpired:
+            pass
     except subprocess.TimeoutExpired:
         pass
