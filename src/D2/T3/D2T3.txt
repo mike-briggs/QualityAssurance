@@ -1,8 +1,8 @@
 login
 agent
 createacct
-1111111
-NAME
+3153759
+jordan
 logout
 login
 machine
