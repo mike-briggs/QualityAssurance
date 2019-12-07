@@ -157,7 +157,7 @@ else:
 
 inTransactionListPath = "./D%s/day_merged_out.txt" %(day)# merge.txt for program, mergeT1.txt for T1, mergeT2.txt for T2 and so on...
 outMasterAccountListPath = "./D%s/master_accounts_out.txt"%(day)  # master_accounts_out.txt
-outValidAccountListPath = "./D%s/valid_accounts_out.txt"%(day)   # valid_accounts_out.txt
+outValidAccountListPath = "./valid_accounts.txt"   # valid_accounts_out.txt
 
 MasterAccountList = parseMasterAccounts(inMasterAccountListPath)
 TransactionList = parseTransactions(inTransactionListPath)
