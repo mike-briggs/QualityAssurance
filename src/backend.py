@@ -41,7 +41,7 @@ class Account:
 
 # Handles all merged transactions
 def mergeFiles():
-    input_files = glob.glob("*.out.actual.txt")
+    input_files = glob.glob("*.out.txt")
 
     with open("merge.txt", "wb") as outf:
         for f in input_files:
