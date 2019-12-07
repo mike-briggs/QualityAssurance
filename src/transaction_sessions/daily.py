@@ -2,6 +2,7 @@ import subprocess
 import os
 import sys
 
+
 class FileNames():
     DAILY_FOLDER_PREFIX = 'T'
     NO_VALID_ACCOUNTS_FILE_INDICATOR = '.no_valid_accounts'
@@ -14,7 +15,6 @@ class FileNames():
     EXPECTED_CONSOLE_FILE_SUFFIX = '.console.expected.txt'
 
 
-
 currentDay = 1
 day = sys.argv[1]
 
@@ -22,35 +22,34 @@ day = sys.argv[1]
 path = './D%s/'%(day)
 for currentDirectoryGenerator in os.walk(path):
 
-     # Get the current directory name
+    # Get the current directory name
     currentDirectory = currentDirectoryGenerator[0]
     print(currentDirectory)
     # If this is a test case directory
     if(FileNames.DAILY_FOLDER_PREFIX in currentDirectory):
-            
+
         # Split the directory name to get separate folder names
         currentDirectory = currentDirectory.replace('\\', '/')
         directoryNames = currentDirectory.split('/')[1:]
 
         print(currentDirectory)
-        #print(directoryNames)     
+        # print(directoryNames)
         # Get the current requirement and test case from folders
         currentRequirementName = directoryNames[0]
         currentTestCaseName = directoryNames[1]
         currentTestName = currentRequirementName + currentTestCaseName
-        
 
-        #SEPARATE DAILY SESSIONS
-        #In folder structure DxTx currentRequirementName[1] = D(x) 
+        # SEPARATE DAILY SESSIONS
+        # In folder structure DxTx currentRequirementName[1] = D(x)
         # ex. D1 : currentRequirementName[1] = 1
         #     D4 : currentRequirementName[1] = 4
 
-        #Check if we need to run backend: no more files in Dx/T1...Dx/T4
-        #Keep track of current session number, and if there are no more files
+        # Check if we need to run backend: no more files in Dx/T1...Dx/T4
+        # Keep track of current session number, and if there are no more files
         # after that session number, call backend
-          
+
         lastElement = currentDirectory[len(currentDirectory)-1]
-        #print(lastElement)
+        # print(lastElement)
         temp = currentDirectory[:-1]
         nextElement = int(lastElement) + 1
         nextElement = str(nextElement)

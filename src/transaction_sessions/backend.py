@@ -40,11 +40,13 @@ class Account:
         return self.accountNumber+" "+str(self.balance)+" "+self.name
 
 # Handles all merged transactions
+
+
 def mergeFiles(day):
     temp = ""
     temp = day
-    location_in = "./D%s/**/*.out.txt" %(day)
-    location_out = "./D%s/day_merged_out.txt" %(day)
+    location_in = "./D%s/**/*.out.txt" % (day)
+    location_out = "./D%s/day_merged_out.txt" % (day)
     print(location_in)
     input_files = glob.glob(location_in)
 
@@ -54,6 +56,8 @@ def mergeFiles(day):
                 outf.write(inf.read())
 
 # returns a list of account objects
+
+
 def parseMasterAccounts(filepath):
     masterAccountList = []
     with open(filepath) as f:
@@ -62,12 +66,15 @@ def parseMasterAccounts(filepath):
         # stores each line (account number) in list
         for i in range(length):
             line = masterAccountList[i].split(" ")
-            masterAccountList[i] = Account(line[0].strip(), line[1].strip(), line[2].strip())
-    
+            masterAccountList[i] = Account(
+                line[0].strip(), line[1].strip(), line[2].strip())
+
     # return list of valid accounts
     return masterAccountList
 
 # returns a list of transactions
+
+
 def parseTransactions(filepath):
     transactionList = []
     with open(filepath) as f:
@@ -77,42 +84,56 @@ def parseTransactions(filepath):
     return transactionList
 
 # Deposit Money into an account
+
+
 def deposit(accountList, inputAccountNumber, inputAmount):
     for j in range(len(accountList)):
-        if accountList[j].accountNumber == inputAccountNumber:  #if found,
-            accountList[j].balance = int(accountList[j].balance) + int(inputAmount)
+        if accountList[j].accountNumber == inputAccountNumber:  # if found,
+            accountList[j].balance = int(
+                accountList[j].balance) + int(inputAmount)
             return True
 
 # Withdraw money from an account
+
+
 def withdraw(accountList, inputAccountNumber, inputAmount):
     for j in range(len(accountList)):
         #assert accountList[j].accountNumber == inputAccountNumber, "Account number is valid"
         if accountList[j].accountNumber == inputAccountNumber:
             #assert int(accountList[j].balance) >= int(inputAmount)
             if int(accountList[j].balance) >= int(inputAmount):
-                accountList[j].balance = int(accountList[j].balance) - int(inputAmount)
+                accountList[j].balance = int(
+                    accountList[j].balance) - int(inputAmount)
                 return [int(accountList[j].accountNumber), int(accountList[j].balance)]
 
 # Transfer money from on account to another
+
+
 def transfer(accountList, toAccountNumber, inputAmount, fromAccountNumber):
     for j in range(len(accountList)):
         if accountList[j].accountNumber == toAccountNumber:
-            toAccount = accountList[j].accountNumber
+            toAccountBalance = accountList[j].balance
             toIndex = j
         if accountList[j].accountNumber == fromAccountNumber:
-            fromAccount = accountList[j].accountNumber
+            fromAccountBalance = accountList[j].balance
             fromIndex = j
 
-    if fromAccount >= inputAmount:
-        accountList[toIndex].balance = int(accountList[toIndex].balance) + int(inputAmount)
-        accountList[fromIndex].balance = int(accountList[fromIndex].balance) - int(inputAmount)
+    if fromAccountBalance >= inputAmount:
+        accountList[toIndex].balance = int(
+            accountList[toIndex].balance) + int(inputAmount)
+        accountList[fromIndex].balance = int(
+            accountList[fromIndex].balance) - int(inputAmount)
 
 # Create a new account
+
+
 def createacct(accountList, inputAccountNumber, accountName):
     accountList.append(Account(inputAccountNumber, 0, accountName))
     return accountList
 
 # Delete an account
+
+
 def deleteacct(accountList, inputAccountNumber, accountName):
     for j in range(len(accountList)):
         if accountList[j].accountNumber == inputAccountNumber:
@@ -120,9 +141,9 @@ def deleteacct(accountList, inputAccountNumber, accountName):
             return True
 
 
-
-## MAIN
+# MAIN
 day = sys.argv[1]
+<<<<<<< HEAD
 prevDay = int(day) - 1
 prevDay = str(prevDay)
 print(prevDay)
@@ -136,10 +157,20 @@ else:
 inTransactionListPath = "./D%s/day_merged_out.txt" %(day)# merge.txt for program, mergeT1.txt for T1, mergeT2.txt for T2 and so on...
 outMasterAccountListPath = "./D%s/master_accounts_out.txt"%(day)  # master_accounts_out.txt
 outValidAccountListPath = "./D%s/valid_accounts_out.txt"%(day)   # valid_accounts_out.txt
+=======
+mergeFiles(day)  # uncomment when testing
+
+inMasterAccountListPath = "master_accounts.txt"  # master_accounts.txt
+filesToMerge = ""
+
+# merge.txt for program, mergeT1.txt for T1, mergeT2.txt for T2 and so on...
+inTransactionListPath = "./D%s/day_merged_out.txt" % (day)
+outMasterAccountListPath = "master_accounts_out.txt"  # master_accounts_out.txt
+outValidAccountListPath = "valid_accounts_out.txt"   # valid_accounts_out.txt
+>>>>>>> 97cb46b835d22c413c2e1c95de8e1d5f3c5df3ab
 
 MasterAccountList = parseMasterAccounts(inMasterAccountListPath)
 TransactionList = parseTransactions(inTransactionListPath)
-
 
 
 # Put account numbers into dictionary, key=index of obj
@@ -147,10 +178,11 @@ allAccountNums = {}
 for i in range(len(MasterAccountList)):
     allAccountNums[i] = MasterAccountList[i]
 
-## TRANSACTIONS
+# TRANSACTIONS
 # Iterate through all Transactions
-for i in range(1,len(TransactionList)):
-    current = TransactionList[i].split()    # Split each transaction into its arguments
+for i in range(1, len(TransactionList)):
+    # Split each transaction into its arguments
+    current = TransactionList[i].split()
     # 000 1111111 222 3333333 4444
     # TYP accntTo amt accntFr name
     if current[0] == "DEP":      # Deposit
@@ -167,12 +199,12 @@ for i in range(1,len(TransactionList)):
 
     elif current[0] == "DEL":    # Delete account
         deleteacct(MasterAccountList, current[1], current[4])
-    
+
     elif current[0] == "EOS":    # End of session
         print("EOS")
 
 
-## OUTPUTS
+# OUTPUTS
 
 # Clear previous data in output files, will be overwritten anyways
 open(outMasterAccountListPath, 'w').close()
@@ -182,11 +214,11 @@ open(outValidAccountListPath, 'w').close()
 for i in range(len(MasterAccountList)):
     # Write to Master Account List
     with open(outMasterAccountListPath, 'a') as wf:
-        wf.write(MasterAccountList[i].toString()) # Write to file
-        if(i != len(MasterAccountList) -1):
+        wf.write(MasterAccountList[i].toString())  # Write to file
+        if(i != len(MasterAccountList) - 1):
             wf.write("\n")
     # Write to Valid ACcount List
     with open(outValidAccountListPath, 'a') as wf:
-        wf.write(MasterAccountList[i].accountNumber) # Write to file
-        if(i != len(MasterAccountList) -1):
+        wf.write(MasterAccountList[i].accountNumber)  # Write to file
+        if(i != len(MasterAccountList) - 1):
             wf.write("\n")
