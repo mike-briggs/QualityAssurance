@@ -26,8 +26,11 @@ Daily.py:
 ## Contributing
 
 Connor Crowe            (20009994)
+
 Jordan Mack             (20005220)
+
 Michael Briggs          (20013906)
+
 Sasanka Wickramasinghe  (10192504)
 
 ## License
