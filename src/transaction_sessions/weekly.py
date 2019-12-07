@@ -21,6 +21,10 @@ folders = filter(filterFolderStructure, files)
 # run the daily script with all the "days" we found
 for i in folders:
     print(i)
+    print(i.replace('D',''))
+    
+    i = i.replace('D','')
+
     # run daily with what day of the week we want
     runCommand = ["python"]+["daily.py"]+[i]
     try:
@@ -28,6 +32,6 @@ for i in folders:
 
         # TODO: Execute backend at the end of each daily
         # if(command ran successfully)
-        print (os.)
+        
     except subprocess.TimeoutExpired:
         pass
