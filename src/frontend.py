@@ -250,7 +250,6 @@ def deleteacct(outputFile, validAccounts, loginState):
 # file path for "valid_accounts.txt"
 validAccountsPath = sys.argv[1]
 outputFilepath = sys.argv[2]                # file path for "out.actual.txt"
-transaction_session = sys.argv[3] #file path for input transaction session
 
 # initialize the login state as 0 (not logged in)
 loginStatus = 0
@@ -268,20 +267,17 @@ for i in range(len(validAccounts)):
 with open(outputFilepath, 'w') as wf:
     wf.write('')
 
-with open(transaction_session) as f:
-    session = f.readlines()
-
-#session = [x.strip() for x in session] 
+#with open(transaction_session) as f:
+    #session = f.readlines()
 count = -1
-
 print("Welcome to Quinterac")
 while(True):    # First loop is the state before being logged in
-    count = count + 1
-    #userInput = input('Type \'exit\' to leave\n> ')
+    #count = count + 1
+    userInput = input('Type \'exit\' to leave\n> ')
     #print(userInput)
 
-    userInput = session[count]
-    print(userInput)
+    #userInput = session[count]
+
     if(userInput == 'login'):
         # set login status with function
         loginStatus = login(outputFilepath)
